@@ -1,3 +1,6 @@
+/*Aaron Alvarez
+Main Test Somewhat the Link
+3/9/17*/
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
@@ -5,7 +8,10 @@ import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) throws FileNotFoundException {
-		File fileIn = new File("C:\\Users\\alvar\\Desktop\\TestFile.txt");
+		System.out.println("What is the path to your file? ");
+		Scanner in = new Scanner(System.in);
+		String fileInput = in.nextLine();
+		File fileIn = new File(fileInput);
 //		fileIn.exists();
 //		System.out.println(fileIn.getAbsolutePath());
 //		Scanner in = new Scanner(fileIn);

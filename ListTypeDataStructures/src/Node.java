@@ -1,4 +1,6 @@
-
+/*Aaron Alvarez
+Node Class that creates the Nodes
+3/9/17*/
 public class Node<E extends Comparable<E>,E1 extends Comparable<E1>, E2 extends Comparable<E2>> {
 	protected E  category1;
 	protected E1 category2;

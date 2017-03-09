@@ -1,3 +1,6 @@
+/*Aaron Alvarez
+Linked List Java that adds delets and modifies the Link List
+3/9/17*/
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Array;
@@ -50,12 +53,15 @@ public class LinkedList<E extends Comparable<E>, E1 extends Comparable<E1>, E2 e
 			this.head = newNode;
 			this.size++;
 			System.out.println("headsize" + size);
+			
 		} else {
 			Node<E, E1, E2> currNode = this.head;
 			int sizeOfCurrNode = 0;
+			
 			//this boolean for some reason doesnt will not work. 34 != 34 is false, that should be true. 
 			//somehow this is true. Run Main to see the tracing
-			boolean checker = (currNode.category1.compareTo((newNode.category1)) != 0);
+			boolean checker = currNode.category1.compareTo(newNode.category1) != 0;
+			System.out.println(currNode.getCatergory1().compareTo((newNode.getCatergory1())));
 			// while its NOT a sublist
 			
 			while (checker) {
@@ -65,27 +71,27 @@ public class LinkedList<E extends Comparable<E>, E1 extends Comparable<E1>, E2 e
 					
 					currNode.right = newNode;
 					newNode.left = currNode;
-					System.out.println("-New Node got set right of current Node");
+					System.out.println("-set right");
 					this.size++;
 					sizeOfCurrNode++;
 					checker = false;
 				} else {
 					currNode = currNode.right;
-					System.out.print("-Current Node moved right");
-					checker = false;
+					System.out.print("-moved right");
 				}
 			}
 			// while its a sublist
+			
 			if (sizeOfCurrNode < 1) {
 				while (!checker) {
 					if (currNode.down == null) {
 						currNode.down = newNode;
-						System.out.println("-New Node got Set Down From current Node");
+						System.out.println("-set down");
 						this.size++;
 						checker = true;
 					} else {
 						currNode = currNode.down;
-						System.out.print("-Current Node moved down ");
+						System.out.print("move down ");
 					}
 				}
 			}
