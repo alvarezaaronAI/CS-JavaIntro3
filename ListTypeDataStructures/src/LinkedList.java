@@ -57,13 +57,11 @@ public class LinkedList<E extends Comparable<E>, E1 extends Comparable<E1>, E2 e
 		} else {
 			Node<E, E1, E2> currNode = this.head;
 			int sizeOfCurrNode = 0;
-			
 			//this boolean for some reason doesnt will not work. 34 != 34 is false, that should be true. 
 			//somehow this is true. Run Main to see the tracing
 			boolean checker = currNode.category1.compareTo(newNode.category1) != 0;
 			System.out.println(currNode.getCatergory1().compareTo((newNode.getCatergory1())));
 			// while its NOT a sublist
-			
 			while (checker) {
 				System.out.println();
 				System.out.println("Does " + currNode.category1 +" NOT equal "+ newNode.category1 +" ?  " + checker);
