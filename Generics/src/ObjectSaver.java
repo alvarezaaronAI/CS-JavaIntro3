@@ -45,11 +45,9 @@ public class ObjectSaver<T> {
 		try {
 			while (true) {
 				Object inputData = input.readObject();
-				System.out.println(inputData);
 				storedInput.add((T) inputData);
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		return storedInput;
 	}
