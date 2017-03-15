@@ -40,17 +40,17 @@ public class Main {
 		// -------------------------------------------------------------------------------------------
 		// Reading One Object
 		System.out.println();
-		System.out.println("Reading 1 Object From Cone.dat File...");
+		System.out.println("Reading 4th Object From Cone.dat File...");
 		System.out.println("--------------------------");
-		System.out.println("   " + conesObjects.readOneObject(1));
+		System.out.println("   " + conesObjects.readOneObject(4));
 		System.out.println("--------------------------");
-		System.out.println("Reading 1st Object From Ellipsoid File...");
+		System.out.println("Reading 4th Object From Ellipsoid File...");
 		System.out.println("--------------------------");
-		System.out.println("   " + ellipsoidObjects.readOneObject(1));
+		System.out.println("   " + ellipsoidObjects.readOneObject(4));
 		System.out.println("--------------------------");
-		System.out.println("Reading 1st Object From Shperes File...");
+		System.out.println("Reading 4th Object From Shperes File...");
 		System.out.println("--------------------------");
-		System.out.println("   " + sphereObjects.readOneObject(1));
+		System.out.println("   " + sphereObjects.readOneObject(4));
 		System.out.println("--------------------------");
 		System.out.println();
 		// -------------------------------------------------------------------------------------------
@@ -74,21 +74,48 @@ public class Main {
 		System.out.println("--------------------------");
 		System.out.println();
 		// -------------------------------------------------------------------------------------------
-		System.out.println();
 		// Sorting out the files.
+		System.out.println();
 		System.out.println("Sorting Cone.dat File...");
 		System.out.println("--------------------------");
-		 System.out.println(" " + ShapeUtilities.recursiveSort(conesObjects.readAllObjects()));
+		 System.out.println(" " + ShapeUtilities.recursiveSort(conesObjects.readAllObjects()) );
 		System.out.println("--------------------------");
 		System.out.println("Sorting Ellipsoid File...");
 		System.out.println("--------------------------");
-		 System.out.println(" " + ShapeUtilities.recursiveSort(ellipsoidObjects.readAllObjects()));
+		 System.out.println(" " + ShapeUtilities.recursiveSort(ellipsoidObjects.readAllObjects()) );
 		System.out.println("--------------------------");
 		System.out.println("Sorting Shperes File...");
 		System.out.println("--------------------------");
-		 System.out.println(" " + ShapeUtilities.recursiveSort(sphereObjects.readAllObjects()));
+		 System.out.println(" " + ShapeUtilities.recursiveSort(sphereObjects.readAllObjects()) );
 		System.out.println("--------------------------");
 		System.out.println();
+		//writing the recursive Sort to A File
+		System.out.println("Writing All Sorted Objects to a File Please Wait...");
+		conesObjects.writeAllObjects(ShapeUtilities.recursiveSort(conesObjects.readAllObjects()), false);
+		System.out.println("Done");
+		System.out.println("Writing All Sorted Objects to a File Please Wait...");
+		ellipsoidObjects.writeAllObjects(ShapeUtilities.recursiveSort(ellipsoidObjects.readAllObjects()), false);
+		System.out.println("Done");
+		System.out.println("Writing All Sorted Objects to a File Please Wait...");
+		sphereObjects.writeAllObjects(ShapeUtilities.recursiveSort(sphereObjects.readAllObjects()), false);
+		System.out.println("Done");
+		//Reading The File Before OverWritting
+		System.out.println();
+		System.out.println("Before Overwritting We are going to read this File");
+		System.out.println("Reading back The Sorted Cones File...");
+		System.out.println("--------------------------");
+		System.out.println("   " + conesObjects.readAllObjects());
+		System.out.println("--------------------------");
+		System.out.println("Reading back The Sorted Ellipsoid File...");
+		System.out.println("--------------------------");
+		System.out.println("   " + ellipsoidObjects.readAllObjects());
+		System.out.println("--------------------------");
+		System.out.println("Reading back The Sorted Shperes File...");
+		System.out.println("--------------------------");
+		System.out.println("   " + sphereObjects.readAllObjects());
+		System.out.println("--------------------------");
+		System.out.println();
+		
 		// -------------------------------------------------------------------------------------------
 		// Writing A Single To File
 		Cone coneObjectTest = new Cone(1, 2);
@@ -151,10 +178,10 @@ public class Main {
 		System.out.println("Writing All Objects to a File Please Wait...");
 		conesObjects.writeAllObjects(conesTester, false);
 		System.out.println("Done");
-		System.out.println("Writing All Objects to a Please Wait...");
+		System.out.println("Writing All Objects to a File Please Wait...");
 		ellipsoidObjects.writeAllObjects(ellipsoidTester, false);
 		System.out.println("Done");
-		System.out.println("Writing All Objects to a Please Wait...");
+		System.out.println("Writing All Objects to a File Please Wait...");
 		sphereObjects.writeAllObjects(sphereTester, false);
 		System.out.println("Done");
 		//Reading The File Before OverWritting
