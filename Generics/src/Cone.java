@@ -1,3 +1,6 @@
+/*Aaron Alvarez
+March 14 2017
+Cone Class which creates a cone object*/
 import java.io.Serializable;
 
 public class Cone implements Shape,Serializable {

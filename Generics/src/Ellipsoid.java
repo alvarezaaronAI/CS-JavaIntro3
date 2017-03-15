@@ -1,3 +1,6 @@
+/*Aaron Alvarez
+March 14 2017
+Ellipsoid Class which creates an ellipsoid object*/
 import java.io.Serializable;
 
 public class Ellipsoid implements Shape,Serializable{

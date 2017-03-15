@@ -1,3 +1,6 @@
+/*Aaron Alvarez
+March 14 2017
+Sphere Class Which Creates a sphere object*/
 import java.io.Serializable;
 
 public class Sphere implements Shape,Serializable{

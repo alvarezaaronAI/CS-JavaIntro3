@@ -1,7 +1,7 @@
 
-/*Aaron Alvare
+/*Aaron Alvarez
 Feb 15 2017
-Driver for Shapes*/
+Tester to run all my methods for previous classes*/
 
 import java.io.File;
 import java.io.FileNotFoundException;
