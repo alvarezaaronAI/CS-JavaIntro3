@@ -4,7 +4,7 @@ public class Ellipsoid implements Shape,Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -296452117969614058L;
+	private static final long serialVersionUID = 1L;
 	private double firstRadius,secoundRadius,thirdRadious;
 
 	public Ellipsoid(double firstRadious, double secoundRadious, double thirdRadious) {

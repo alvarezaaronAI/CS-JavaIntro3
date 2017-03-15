@@ -4,7 +4,7 @@ public class Sphere implements Shape,Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6202046434801016383L;
+	private static final long serialVersionUID = 1L;
 	private double radius;
 
 	public Sphere(double radius) {

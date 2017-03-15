@@ -5,7 +5,7 @@ public class Cone implements Shape,Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3662618384324883783L;
+	  static final long serialVersionUID =1L;
 	private double height,radius;
 	public Cone(double height, double radious) {
 		super();
