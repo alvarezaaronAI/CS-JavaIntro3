@@ -94,17 +94,18 @@ public class Main {
 		Cone coneObjectTest = new Cone(1, 2);
 		Ellipsoid ellipsoidObjectTest = new Ellipsoid(1, 2, 3);
 		Sphere sphereObjectTest = new Sphere(1);
-		System.out.println();
-		System.out.println("Writing A File Please Wait...");
-		conesObjects.writeOneObject(coneObjectTest, true);
+		System.out.println("Testing Writting one Object To A File, by replacing the contents given one Object");
+		System.out.println("Writing one Cone Object To A File Please Wait...");
+		conesObjects.writeOneObject(coneObjectTest, false);
 		System.out.println("Done");
-		System.out.println("Writing A File Please Wait...");
-		ellipsoidObjects.writeOneObject(ellipsoidObjectTest, true);
+		System.out.println("Writing one Ellipsoid Object To A File Please Wait...");
+		ellipsoidObjects.writeOneObject(ellipsoidObjectTest, false);
 		System.out.println("Done");
-		System.out.println("Writing A File Please Wait...");
-		sphereObjects.writeOneObject(sphereObjectTest, true);
+		System.out.println("Writing one Sphere Object To A File Please Wait...");
+		sphereObjects.writeOneObject(sphereObjectTest, false);
 		System.out.println("Done");
 		//Reading The File Before OverWritting
+		System.out.println();
 		System.out.println("Before Overwritting We are going to read this File");
 		System.out.println("Reading Cones File...");
 		System.out.println("--------------------------");
@@ -121,6 +122,7 @@ public class Main {
 		System.out.println();
 		// -------------------------------------------------------------------------------------------
 		// Writing All Objects To File
+		System.out.println();
 		Cone coneObjectTest1 = new Cone(1, 2);
 		Cone coneObjectTest2 = new Cone(2, 3);
 		Cone coneObjectTest3 = new Cone(3, 4);
@@ -155,6 +157,21 @@ public class Main {
 		System.out.println("Writing All Objects to a Please Wait...");
 		sphereObjects.writeAllObjects(sphereTester, false);
 		System.out.println("Done");
-		
+		//Reading The File Before OverWritting
+		System.out.println();
+		System.out.println("Before Overwritting We are going to read this File");
+		System.out.println("Reading Cones File...");
+		System.out.println("--------------------------");
+		System.out.println("   " + conesObjects.readAllObjects());
+		System.out.println("--------------------------");
+		System.out.println("Reading Ellipsoid File...");
+		System.out.println("--------------------------");
+		System.out.println("   " + ellipsoidObjects.readAllObjects());
+		System.out.println("--------------------------");
+		System.out.println("Reading Shperes File...");
+		System.out.println("--------------------------");
+		System.out.println("   " + sphereObjects.readAllObjects());
+		System.out.println("--------------------------");
+		System.out.println();
 	}
 }
