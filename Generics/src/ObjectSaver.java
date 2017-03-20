@@ -1,3 +1,4 @@
+
 /*Aaron Alvarez
 March 14 2017
 Object Saver which reads and writes a file*/
@@ -44,10 +45,11 @@ public class ObjectSaver<T> {
 		ArrayList<T> storedInput = new ArrayList<T>();
 		try {
 			while (true) {
-				Object inputData = input.readObject();
+				T inputData = (T) input.readObject();
 				storedInput.add((T) inputData);
 			}
 		} catch (IOException e) {
+			
 		}
 		return storedInput;
 	}
@@ -55,13 +57,10 @@ public class ObjectSaver<T> {
 	public void writeOneObject(T anyObject, Boolean check) throws IOException {
 		FileOutputStream fileOut = new FileOutputStream(this.file, check);
 		ObjectOutputStream outPut = new ObjectOutputStream(fileOut);
-		try {
 			outPut.writeObject(anyObject);
 			outPut.close();
 			fileOut.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 	}
 
 	public void writeAllObjects(ArrayList<T> arrayIn, Boolean check) throws IOException {
