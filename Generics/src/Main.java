@@ -26,12 +26,12 @@ public class Main {
 		System.out.println("--------------------------");
 		System.out.println("   " + conesObjects.readAllObjects());
 		System.out.println("--------------------------");
-		System.out.println("Reading Ellipsoid File...");
+		System.out.println("Reading Ellipsoid.dat File...");
 		ObjectSaver<Shape> ellipsoidObjects = new ObjectSaver<>(ellipsoidsFile);
 		System.out.println("--------------------------");
 		System.out.println("   " + ellipsoidObjects.readAllObjects());
 		System.out.println("--------------------------");
-		System.out.println("Reading Shperes File...");
+		System.out.println("Reading Shperes.dat File...");
 		ObjectSaver<Shape> sphereObjects = new ObjectSaver<>(shperesFile);
 		System.out.println("--------------------------");
 		System.out.println("   " + sphereObjects.readAllObjects());
@@ -40,17 +40,17 @@ public class Main {
 		// -------------------------------------------------------------------------------------------
 		// Reading One Object
 		System.out.println();
-		System.out.println("Reading 4th Object From Cone.dat File...");
+		System.out.println("Reading 1st Object From Cone.dat File...");
 		System.out.println("--------------------------");
-		System.out.println("   " + conesObjects.readOneObject(4));
+		System.out.println("   " + conesObjects.readOneObject(1));
 		System.out.println("--------------------------");
-		System.out.println("Reading 4th Object From Ellipsoid File...");
+		System.out.println("Reading 1st Object From Ellipsoid File...");
 		System.out.println("--------------------------");
-		System.out.println("   " + ellipsoidObjects.readOneObject(4));
+		System.out.println("   " + ellipsoidObjects.readOneObject(1));
 		System.out.println("--------------------------");
-		System.out.println("Reading 4th Object From Shperes File...");
+		System.out.println("Reading 1st Object From Shperes File...");
 		System.out.println("--------------------------");
-		System.out.println("   " + sphereObjects.readOneObject(4));
+		System.out.println("   " + sphereObjects.readOneObject(1));
 		System.out.println("--------------------------");
 		System.out.println();
 		// -------------------------------------------------------------------------------------------
@@ -118,9 +118,11 @@ public class Main {
 		
 		// -------------------------------------------------------------------------------------------
 		// Writing A Single To File
+		
 		Cone coneObjectTest = new Cone(1, 2);
 		Ellipsoid ellipsoidObjectTest = new Ellipsoid(1, 2, 3);
 		Sphere sphereObjectTest = new Sphere(1);
+		
 		System.out.println("Testing Writting one Object To A File, by replacing the contents given one Object");
 		System.out.println("Writing one Cone Object To A File Please Wait...");
 		conesObjects.writeOneObject(coneObjectTest, false);

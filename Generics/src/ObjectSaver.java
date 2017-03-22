@@ -2,6 +2,7 @@
 /*Aaron Alvarez
 March 14 2017
 Object Saver which reads and writes a file*/
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -39,7 +40,7 @@ public class ObjectSaver<T> {
 
 	}
 
-	public ArrayList<T> readAllObjects() throws FileNotFoundException, IOException, ClassNotFoundException {
+	public ArrayList<T> readAllObjects() throws ClassNotFoundException, IOException {
 		FileInputStream fileInput = new FileInputStream(this.file);
 		ObjectInputStream input = new ObjectInputStream(fileInput);
 		ArrayList<T> storedInput = new ArrayList<T>();
@@ -48,10 +49,10 @@ public class ObjectSaver<T> {
 				T inputData = (T) input.readObject();
 				storedInput.add((T) inputData);
 			}
-		} catch (IOException e) {
-			
+		} catch (EOFException e) {
+			return storedInput;
 		}
-		return storedInput;
+		
 	}
 
 	public void writeOneObject(T anyObject, Boolean check) throws IOException {
@@ -69,7 +70,7 @@ public class ObjectSaver<T> {
 		try {
 
 			for (T i : arrayIn) {
-				outPut.writeObject(arrayIn);
+				outPut.writeObject(i);
 			}
 			outPut.close();
 			fileOut.close();
