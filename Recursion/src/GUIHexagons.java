@@ -6,28 +6,38 @@ This class is meant to create  multiple hexegons and run the same code as Hexago
 As soon as we print out a possible solution we submit it here in this class and this class reads the solution 
 and prints out the solved arraylist.*/
 
+import java.util.ArrayList;
+
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Polygon;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class GUIHexagons extends Application {
-	private double width = 270.0;
-	private double height = 90.0;
-
+	private final double width = 1500, height = 1000;
 	private void HexagonWindow(Stage primaryStage) {
-		Group rootOfScenegraph = new Group();
-		primaryStage.setScene(new Scene(rootOfScenegraph, width, height));
 		
+		Pane pane = new Pane();
 		
-		Polygon hexagon = new Polygon(new double[] { 225.0,15.0,  250.0,30.0,  250.0,60.0,  225.0,75.0,  200.0,60.0,  200.0,30.0 });
-		hexagon.setStroke(Color.BLACK);
-		hexagon.setStrokeWidth(3);
-		hexagon.setFill(null);
+		double centerX = width / 2 , centerY = height / 2;
+		double radius = Math.min(width, height) * 0.4; 
+		ArrayList<Double> xCoordinates = new ArrayList<Double>();
+		ArrayList<Double> yCoordinates = new ArrayList<Double>();
+		for (int i = 0; i < 6; i++) {
+			xCoordinates.add(centerX + radius * Math.cos(2 * i * Math.PI / 6));
+			yCoordinates.add(centerY - radius * Math.sin(2 * i * Math.PI / 6));
+		}
 
-		rootOfScenegraph.getChildren().addAll( hexagon);
+		primaryStage.setTitle("Hex Gui");
+		primaryStage.setScene(new Scene(pane, width, height));
+		 
+	}
+	public String[] StringToArray(String b) //separates a string into an array of its characters.
+	{
+		
+		String[] tempArray = b.split("");
+		
+		return tempArray;
 	}
 
 	@Override

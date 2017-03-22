@@ -15,6 +15,21 @@ public class Main {
 
 		Scanner in = new Scanner(System.in);
 		// -------------------------------------------------------------------------------------------
+	/*	System.out.println("How many files do you have? ");
+		int numOfFiles = in.nextInt();
+		String[] fileInputs = new String[numOfFiles];
+		for(int i = 0 ; i < numOfFiles; i++){
+			System.out.println("Whats the " + (i+1) + " st/nd file path name?");
+			fileInputs[i] = in.next();
+			
+		}
+		File[] usersFiles = new File[numOfFiles];
+		for (int i = 0; i < numOfFiles; i++) {
+			File tempFile = new File(fileInputs[i]);
+			usersFiles[i] = tempFile;
+		}*/
+		// -------------------------------------------------------------------------------------------
+		
 		// Create File Readers
 		File conesFile = new File("C:\\Users\\alvar\\Desktop\\cones.dat");
 		File ellipsoidsFile = new File("C:\\Users\\alvar\\Desktop\\ellipsoids.dat");
@@ -62,12 +77,12 @@ public class Main {
 		 System.out.println("Min: " + ShapeUtilities.min(ShapeUtilities.recursiveSort(conesObjects.readAllObjects())) );
 		 System.out.println("Max: " + ShapeUtilities.max(ShapeUtilities.recursiveSort(conesObjects.readAllObjects())) );
 		System.out.println("--------------------------");
-		System.out.println("Reading Ellipsoid File...");
+		System.out.println("Reading Ellipsoid.dat File...");
 		System.out.println("--------------------------");
 		 System.out.println("Min: " + ShapeUtilities.min(ShapeUtilities.recursiveSort(ellipsoidObjects.readAllObjects())) );
 		 System.out.println("Max: " + ShapeUtilities.max(ShapeUtilities.recursiveSort(ellipsoidObjects.readAllObjects())) );
 		System.out.println("--------------------------");
-		System.out.println("Reading Shperes File...");
+		System.out.println("Reading Shperes.dat File...");
 		System.out.println("--------------------------");
 		 System.out.println("Min: " + ShapeUtilities.min(ShapeUtilities.recursiveSort(sphereObjects.readAllObjects())) );
 		 System.out.println("Max: " + ShapeUtilities.max(ShapeUtilities.recursiveSort(sphereObjects.readAllObjects())) );
@@ -80,11 +95,11 @@ public class Main {
 		System.out.println("--------------------------");
 		 System.out.println(" " + ShapeUtilities.recursiveSort(conesObjects.readAllObjects()) );
 		System.out.println("--------------------------");
-		System.out.println("Sorting Ellipsoid File...");
+		System.out.println("Sorting Ellipsoid.dat File...");
 		System.out.println("--------------------------");
 		 System.out.println(" " + ShapeUtilities.recursiveSort(ellipsoidObjects.readAllObjects()) );
 		System.out.println("--------------------------");
-		System.out.println("Sorting Shperes File...");
+		System.out.println("Sorting Shperes.dat File...");
 		System.out.println("--------------------------");
 		 System.out.println(" " + ShapeUtilities.recursiveSort(sphereObjects.readAllObjects()) );
 		System.out.println("--------------------------");
@@ -101,7 +116,7 @@ public class Main {
 		System.out.println("Done");
 		//Reading The File Before OverWritting
 		System.out.println();
-		System.out.println("Before Overwritting We are going to read this File");
+		System.out.println("File You Wrote");
 		System.out.println("Reading back The Sorted Cones File...");
 		System.out.println("--------------------------");
 		System.out.println("   " + conesObjects.readAllObjects());
@@ -135,7 +150,7 @@ public class Main {
 		System.out.println("Done");
 		//Reading The File Before OverWritting
 		System.out.println();
-		System.out.println("Before Overwritting We are going to read this File");
+		System.out.println("File You Wrote");
 		System.out.println("Reading Cones File...");
 		System.out.println("--------------------------");
 		System.out.println("   " + conesObjects.readAllObjects());
@@ -152,6 +167,7 @@ public class Main {
 		// -------------------------------------------------------------------------------------------
 		// Writing All Objects To File
 		System.out.println();
+		//Cone File
 		Cone coneObjectTest1 = new Cone(1, 2);
 		Cone coneObjectTest2 = new Cone(2, 3);
 		Cone coneObjectTest3 = new Cone(3, 4);
@@ -159,7 +175,7 @@ public class Main {
 		conesTester.add(coneObjectTest1);
 		conesTester.add(coneObjectTest2);
 		conesTester.add(coneObjectTest3);
-		
+		//Ellipsoid File
 		Ellipsoid ellipsoidObjectTest1 = new Ellipsoid(1, 2, 3);
 		Ellipsoid ellipsoidObjectTest2 = new Ellipsoid(2, 3, 4);
 		Ellipsoid ellipsoidObjectTest3 = new Ellipsoid(3, 4, 5);
@@ -167,7 +183,7 @@ public class Main {
 		ellipsoidTester.add(ellipsoidObjectTest1);
 		ellipsoidTester.add(ellipsoidObjectTest2);
 		ellipsoidTester.add(ellipsoidObjectTest3);
-		
+		//Sphere File
 		Sphere sphereObjectTest1 = new Sphere(1);
 		Sphere sphereObjectTest2 = new Sphere(2);
 		Sphere sphereObjectTest3 = new Sphere(3);

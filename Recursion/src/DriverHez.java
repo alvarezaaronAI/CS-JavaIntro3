@@ -14,7 +14,7 @@ public class DriverHez {
 		+ "\n1 PPBGOY \n2 GGGGGG\n3 PPPPPP\n4 ROYGBP\n5 PROYGB\n6 GOGYGB\n7 BGPPOR");
 		System.out.println("Please Enter the file that contains the Hexagon information.");
 		try {
-			puzzle1.createHexaArrayList("HexagonExample1.txt");
+			puzzle1.createHexaArrayList("C:\\Users\\alvar\\Desktop\\TestFile.txt");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.NotSerializableException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -41,12 +42,12 @@ public class ObjectSaver<T> {
 	}
 
 	public ArrayList<T> readAllObjects() throws ClassNotFoundException, IOException {
-		FileInputStream fileInput = new FileInputStream(this.file);
-		ObjectInputStream input = new ObjectInputStream(fileInput);
+		FileInputStream fis = new FileInputStream(this.file);
+		ObjectInputStream ois = new ObjectInputStream(fis);
 		ArrayList<T> storedInput = new ArrayList<T>();
 		try {
 			while (true) {
-				T inputData = (T) input.readObject();
+				T inputData = (T) ois.readObject();
 				storedInput.add((T) inputData);
 			}
 		} catch (EOFException e) {
@@ -55,25 +56,25 @@ public class ObjectSaver<T> {
 		
 	}
 
-	public void writeOneObject(T anyObject, Boolean check) throws IOException {
-		FileOutputStream fileOut = new FileOutputStream(this.file, check);
-		ObjectOutputStream outPut = new ObjectOutputStream(fileOut);
-			outPut.writeObject(anyObject);
-			outPut.close();
-			fileOut.close();
+	public void writeOneObject(T anyObject, Boolean check) throws IOException, NotSerializableException {
+		FileOutputStream fos = new FileOutputStream(this.file, check);
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(anyObject);
+			oos.close();
+			fos.close();
 		
 	}
 
-	public void writeAllObjects(ArrayList<T> arrayIn, Boolean check) throws IOException {
-		FileOutputStream fileOut = new FileOutputStream(this.file, check);
-		ObjectOutputStream outPut = new ObjectOutputStream(fileOut);
+	public void writeAllObjects(ArrayList<T> arrayIn, Boolean check) throws IOException, NotSerializableException{
+		FileOutputStream fos = new FileOutputStream(this.file, check);
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
 		try {
 
 			for (T i : arrayIn) {
-				outPut.writeObject(i);
+				oos.writeObject(i);
 			}
-			outPut.close();
-			fileOut.close();
+			oos.close();
+			fos.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

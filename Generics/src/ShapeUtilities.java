@@ -1,3 +1,4 @@
+
 /*Aaron Alvarez
 March 14 2017
 Shape Utilities Sorting out the ArrayList of Generic Objects Shapes*/
@@ -31,7 +32,8 @@ public class ShapeUtilities<T extends Shape> {
 		leftList = recursiveSort(leftList);
 		rightList = recursiveSort(rightList);
 		ArrayList<T> tempArray = new ArrayList<T>();
-		// NOTE: When adding arrayList you add them to the front of the arrayList.
+		// NOTE: When adding arrayList you add them to the front of the
+		// arrayList.
 		// adding mid with leftList to tempArray
 		tempArray.add(midElemObj);
 		tempArray.addAll(leftList);
@@ -45,9 +47,10 @@ public class ShapeUtilities<T extends Shape> {
 		arrayListIn = recursiveSort(arrayListIn);
 		return arrayListIn.get(0).getVolume();
 	}
+
 	public static <T extends Shape> double max(ArrayList<T> arrayListIn) {
 		arrayListIn = recursiveSort(arrayListIn);
-		return arrayListIn.get(arrayListIn.size()-1).getVolume();
+		return arrayListIn.get(arrayListIn.size() - 1).getVolume();
 	}
 
 }
