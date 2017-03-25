@@ -121,9 +121,11 @@ public class RBTree<T extends Comparable<T>, E> {
 				return g.leftChild;
 			}
 			else{
-				
+				//if they are equal return
 			}
 		}
+		//returns null if has node has no Grand Parent
+		return null;
 	}
 	/**
 	 * Insert a node to the Red Black Tree First is the root any after that will
