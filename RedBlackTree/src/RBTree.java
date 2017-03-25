@@ -29,6 +29,21 @@ public class RBTree<T extends Comparable<T>, E> {
 	}
 
 	/**
+	 * Method that find the root given a specific Node of that root.
+	 */
+	public RBNode<T, E> searchRoot(RBNode<T, E> node) {
+		RBNode<T, E> c = node;
+		RBNode<T, E> p = node.parent;
+		// While the parent of the current node is not null move up.
+		while (p != null) {
+			c = c.parent;
+		}
+		// c must be the root of the node being entered
+		// return c which is the root.
+		return c;
+	}
+
+	/**
 	 * This method takes in a node, returns -1 or 1. Number Line If went left
 	 * from root, return -1, else 1 if it went right.
 	 */
@@ -102,32 +117,69 @@ public class RBTree<T extends Comparable<T>, E> {
 			return null;
 		}
 	}
+
 	/**
-	 * Method that searches for the Uncle.
-	 * Returns the Uncle or null if not found.
+	 * Method that searches for the Uncle. Returns the Uncle or null if not
+	 * found.
 	 */
 	public RBNode<T, E> uncleNode(RBNode<T, E> node) {
-		//Check if the Node has a Grand Parent else, uncle dont exist
+		// Check if the Node has a Grand Parent else, uncle dont exist
 		if (grandParent(node) != null) {
-			//Now there's a chance of an Uncle existing 
+			// Now there's a chance of an Uncle existing
 			RBNode<T, E> g = grandParent(node);
-			//check if uncle is left or right
+			// check if uncle is left or right
 			if (checkLR(node) == -1) {
-				//Must return right uncle
+				// Must return right uncle
 				return g.rightChild;
-			}
-			else if (checkLR(node) == 1) {
-				//must return left uncle
+			} else if (checkLR(node) == 1) {
+				// must return left uncle
 				return g.leftChild;
-			}
-			else{
-				//else it must be equal, it should never land here either way.
+			} else {
+				// else it must be equal, it should never land here either way.
 				return null;
 			}
 		}
-		//returns null if has node has no Grand Parent, then has no uncle.
+		// returns null if has node has no Grand Parent, then has no uncle.
 		return null;
 	}
+
+	/**
+	 * Method that left rotates from the given node. Modifies the Red Black Tree
+	 * Node member variable;
+	 */
+	public void leftRotate(RBNode<T, E> node) {
+		// Keep Track of the root and the pivot
+		RBNode<T, E> root = node;
+		RBNode<T, E> pivot = node.rightChild;
+		RBNode<T, E> rParent = root.parent;
+		// If pivot is not null, then proceed to rotate
+		if (pivot != null) {
+			// do this if root has a parent
+			if (rParent != null) {
+				if (root.uniqueKey.compareTo(rParent.uniqueKey) < 0) {
+					// root must be on the left of parent
+					root.rightChild = pivot.leftChild;
+					pivot.leftChild = root;
+					rParent.leftChild = pivot;
+					this.root = searchRoot(rParent);
+				} else if (root.uniqueKey.compareTo(rParent.uniqueKey) > 0) {
+					// root must be on the right of the parent.
+					root.rightChild = pivot.leftChild;
+					pivot.leftChild = root;
+					rParent.rightChild = pivot;
+					this.root = searchRoot(rParent);
+				}
+			}
+
+		}
+		// else if root has no parent, then rotate with no parent.
+		else {
+			root.rightChild = pivot.leftChild;
+			pivot.leftChild = root;
+			this.root = pivot;
+		}
+	}
+	
 	/**
 	 * Insert a node to the Red Black Tree First is the root any after that will
 	 * be inside the root. Returns whether false if the key is the same,
