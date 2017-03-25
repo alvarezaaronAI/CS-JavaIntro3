@@ -121,10 +121,11 @@ public class RBTree<T extends Comparable<T>, E> {
 				return g.leftChild;
 			}
 			else{
-				//if they are equal return
+				//else it must be equal, it should never land here either way.
+				return null;
 			}
 		}
-		//returns null if has node has no Grand Parent
+		//returns null if has node has no Grand Parent, then has no uncle.
 		return null;
 	}
 	/**
