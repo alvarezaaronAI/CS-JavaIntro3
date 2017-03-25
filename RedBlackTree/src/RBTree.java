@@ -120,6 +120,9 @@ public class RBTree<T extends Comparable<T>, E> {
 				//must return left uncle
 				return g.leftChild;
 			}
+			else{
+				
+			}
 		}
 	}
 	/**
