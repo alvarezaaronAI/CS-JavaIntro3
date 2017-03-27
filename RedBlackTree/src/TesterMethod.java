@@ -8,9 +8,7 @@ public class TesterMethod {
 		rootTemp.leftChild = leftChildTemp;
 		rootTemp.rightChild = rightChildTemp;
 		
-		System.out.println(rootTemp.uniqueKey.compareTo(leftChildTemp.uniqueKey));
-		System.out.println(rootTemp.uniqueKey.compareTo(rightChildTemp.uniqueKey));
-		System.out.println(null!=null);
+
 	}
 
 }
