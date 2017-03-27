@@ -1,4 +1,8 @@
-
+/*
+ * Aaron Alvarez
+ * March 16, 2017
+ * RBTree Creator
+ */
 public class RBTree<T extends Comparable<T>, E> {
 	protected RBNode<T, E> root = null;
 	protected RBNode<T, E> nillLeaf = null;
@@ -11,6 +15,10 @@ public class RBTree<T extends Comparable<T>, E> {
 		// well its supposed just create a new Red Black Tree
 		// Maybe create a new one that does a array of Objects
 	}
+	public RBTree(T value,E[] objects) {
+		  for (int i = 0; i < objects.length; i++)
+		   insertingANode(value,objects[i] );
+		 } 
 
 	/*
 	 * Makes a new Node with the given Key and Value. Nodes always start of Red.
@@ -65,6 +73,27 @@ public class RBTree<T extends Comparable<T>, E> {
 	 * Method that will search through the Red Black Tree. Returns True of the
 	 * node inserted exist.
 	 */
+	public boolean search(T key) {
+		RBNode<T, E> c = root;
+		while (c != nillLeaf) {
+			// If Node is less than the current Node then go left.
+			if (key.compareTo(c.uniqueKey) < 0) {
+				// we go left
+				c = c.leftChild;
+			}
+			// If Node is bigger than the current Node then go right.
+			else if (key.compareTo(c.uniqueKey) > 0) {
+				// we go right
+				c = c.rightChild;
+			}
+			// Else they are equal
+			else {
+				return true;
+			}
+		}
+		// OtherWise return false, it doesnt exist.
+		return false;
+	}
 	public boolean search(RBNode<T, E> node) {
 		// We Will start Looking from the root.
 		RBNode<T, E> c = root;
@@ -321,7 +350,12 @@ public class RBTree<T extends Comparable<T>, E> {
 		this.size++;
 		return true;
 	}
-
+	/*
+	 * Inserting and checking
+	 */
+	public void insertingANode(T key, E value) {
+		RBNode<T, E> insertedNode = createRBNode(key, value);
+	}
 	/*
 	 * Red Black Tress rules checker.
 	 */
@@ -372,4 +406,26 @@ public class RBTree<T extends Comparable<T>, E> {
 		}
 		return false;
 	}
+	/*
+	 * getters and setters
+	 */
+	public RBNode<T, E> getRoot() {
+		return root;
+	}
+	public void setRoot(RBNode<T, E> root) {
+		this.root = root;
+	}
+	public RBNode<T, E> getNillLeaf() {
+		return nillLeaf;
+	}
+	public void setNillLeaf(RBNode<T, E> nillLeaf) {
+		this.nillLeaf = nillLeaf;
+	}
+	public int getSize() {
+		return size;
+	}
+	public void setSize(int size) {
+		this.size = size;
+	}
+	
 }

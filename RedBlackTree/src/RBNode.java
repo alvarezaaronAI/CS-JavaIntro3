@@ -1,4 +1,8 @@
-
+/*
+ * Aaron Alvarez
+ * March 16, 2017
+ * RBNode that creates a node for rb tree
+ */
 public class RBNode<K extends Comparable<K>, V> {
 	protected K uniqueKey;
 	protected V data;
