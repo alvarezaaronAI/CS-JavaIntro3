@@ -321,21 +321,26 @@ public class RBTree<T extends Comparable<T>, E> {
 			RBNode<T, E> parent = nillLeaf;
 			RBNode<T, E> current = root;
 			while (current != nillLeaf) {
+				System.out.println("Test1");
 				// add to left
 				if (key.compareTo(current.getUniqueKey()) < 0) {
+					System.out.println("Test2");
 					parent = current;
 					current = current.leftChild;
 				}
 				// add to right
 				else if (key.compareTo(current.getUniqueKey()) > 0) {
+					System.out.println("Test3");
 					parent = current;
 					current = current.rightChild;
 				} else
+					System.out.println("Test4");
 					// return if the key is a duplicate
 					return false;
 			}
 			// Add a node to the root.
 			if (key.compareTo(current.getUniqueKey()) < 0) {
+				System.out.println("Test5");
 				parent.leftChild = insertedNode;
 				insertedNode.parent = parent;
 				insertedNode.leftChild = nillLeaf;

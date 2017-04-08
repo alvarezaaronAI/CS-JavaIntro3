@@ -1,5 +1,6 @@
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class BubbleSortUP<T extends Comparable<T>> {
 	/*
@@ -11,21 +12,28 @@ public class BubbleSortUP<T extends Comparable<T>> {
 	private int numElements = 0;
 	private long numComparisons = 0;
 	private long numSwaps = 0;
-	private long runTimeSeconds = 0;
+	private Duration runTime = null;
 
 	/*
 	 * Constructor, given any ArrayList Type.
 	 */
 	// This will automatically create an ArrayList of n random integers only.
-	public BubbleSortUP(int sizeOfArray) {
+	public BubbleSortUP(int sizeOfArrayIn) {
+		//ArrayList that store the original list 
 		ArrayList<Integer> randomArrayList = new ArrayList<>();
-		for (int i = 0; i < sizeOfArray; i++) {
-			int randomVal = 0 + (int) (Math.random() * (sizeOfArray + 0 + 1));
+		//ArrayList that stores the original list no sorting what so ever
+		ArrayList<Integer> copyArrayList = new ArrayList<>();
+		for (int i = 0; i < sizeOfArrayIn; i++) {
+			int randomVal = 0 + (int) (Math.random() * (sizeOfArrayIn + 0 + 1));
 			randomArrayList.add(randomVal);
+			copyArrayList.add(randomVal);
 		}
-
-		this.savedData = (ArrayList<T>) randomArrayList;
+		//setting up everything for the user
+		Instant start = Instant.now();
 		this.sortedData = sort((ArrayList<T>) randomArrayList);
+		Instant end = Instant.now();
+		this.savedData = (ArrayList<T>) copyArrayList;
+		this.runTime = Duration.between(start, end);
 		this.numElements = randomArrayList.size();
 		// ----------EraseAfterThisIsOnlyForTestingPurposes------------
 		System.out.println("TestingPurposes1");
@@ -34,26 +42,37 @@ public class BubbleSortUP<T extends Comparable<T>> {
 		consolePrintOut(this.savedData);
 		System.out.println("Sorted");
 		consolePrintOut(this.sortedData);
+		System.out.println("Sorting Took " + runTime + "amount of time.");
 		// -------------------------------------------------------------
 	}
 
 	// This will sort out the given ArrayList of any type.
-	public BubbleSortUP(ArrayList<T> arrayInput) {
-
-		this.savedData = arrayInput;
-		this.sortedData = sort(arrayInput);
-		this.numElements = arrayInput.size();
+	public BubbleSortUP(ArrayList<T> arrayIn) {
+		ArrayList<T> copyArrayList = new ArrayList<>();
+		for (int i = 0; i < arrayIn.size(); i++) {
+			copyArrayList.add(arrayIn.get(i));
+		}
+		Instant start = Instant.now();
+		this.sortedData = sort(arrayIn);
+		Instant end = Instant.now();
+		this.savedData = copyArrayList;
+		this.runTime = Duration.between(start, end);
+		this.numElements = this.sortedData.size();
 		// ----------EraseAfterThisIsOnlyForTestingPurposes------------
 		System.out.println("TestingPurposes2");
-		System.out.println("This is the array You Entered");
+		System.out.println("This is the ArrayList You Created");
+		System.out.println("Non Sorted");
 		consolePrintOut(this.savedData);
+		System.out.println("Sorted");
+		consolePrintOut(this.sortedData);
+		System.out.println("Sorting Took " + runTime + "amount of time.");
 		// -------------------------------------------------------------
 	}
 
 	/*
 	 * Methods That Will Do The Sorting
 	 */
-	// This will Sort out a arraylist of any type
+	// This will Sort out a array list of any type
 	private ArrayList<T> sort(ArrayList<T> arrayListInput) {
 		for (int i = 1; i <= arrayListInput.size() - 1; i++) {
 			for (int j = 0; j <= arrayListInput.size() - 2; j++) {
@@ -64,6 +83,7 @@ public class BubbleSortUP<T extends Comparable<T>> {
 				}
 			}
 		}
+		this.sortedData = arrayListInput;
 		return arrayListInput;
 	}
 
@@ -127,12 +147,12 @@ public class BubbleSortUP<T extends Comparable<T>> {
 		this.numSwaps = numSwaps;
 	}
 
-	public long getRunTimeSeconds() {
-		return runTimeSeconds;
+	public Duration getRunTime() {
+		return runTime;
 	}
 
-	public void setRunTimeSeconds(long runTimeSeconds) {
-		this.runTimeSeconds = runTimeSeconds;
+	public void setRunTime(Duration runTime) {
+		this.runTime = runTime;
 	}
 
 	public String getNAME() {
@@ -141,9 +161,9 @@ public class BubbleSortUP<T extends Comparable<T>> {
 
 	@Override
 	public String toString() {
-		return "BubbleSortUP [NAME=" + NAME + ", ogList=" + savedData + ", numElements=" + numElements
-				+ ", numComparisons=" + numComparisons + ", numSwaps=" + numSwaps + ", runTimeSeconds=" + runTimeSeconds
-				+ "]";
+		return "BubbleSortUP [NAME=" + NAME + ", savedData=" + savedData + ", sortedData=" + sortedData
+				+ ", numElements=" + numElements + ", numComparisons=" + numComparisons + ", numSwaps=" + numSwaps
+				+ ", runTimeSeconds=" + runTime + "]";
 	}
 
 }

@@ -32,13 +32,6 @@ public class GUIHexagons extends Application {
 		primaryStage.setScene(new Scene(pane, width, height));
 		 
 	}
-	public String[] StringToArray(String b) //separates a string into an array of its characters.
-	{
-		
-		String[] tempArray = b.split("");
-		
-		return tempArray;
-	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {

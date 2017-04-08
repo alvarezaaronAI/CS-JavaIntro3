@@ -7,7 +7,8 @@ public class TesterMethod {
 		RBNode<Integer, Character> rightChildTemp = new RBNode<Integer, Character>(14, 'r', 'r');
 		rootTemp.leftChild = leftChildTemp;
 		rootTemp.rightChild = rightChildTemp;
-		
+		RBNode<Integer, Character> temp ;
+		RBNode<Integer, String> temp1;
 
 	}
 

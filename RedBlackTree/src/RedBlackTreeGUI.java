@@ -35,7 +35,6 @@ public class RedBlackTreeGUI extends Application {
 
     btInsert.setOnAction(e -> {
       int key = Integer.parseInt(tfKey.getText());
-
       if (tree.search(key)) { // key is in the tree already
         view.displayTree();
         view.setStatus(key + " is already in the tree");
