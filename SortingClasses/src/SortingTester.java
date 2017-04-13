@@ -3,15 +3,19 @@ import java.util.ArrayList;
 public class SortingTester {
 	public static void main(String[] args) {
 		ArrayList<Double> test1BS = new ArrayList<>();
-		for (int i = 0; i < 40; i++) {
-			int randomVal = 0 + (int) (Math.random() * (40 + 0 + 1));
+		for (int i = 0; i < 20; i++) {
+			int randomVal = 0 + (int) (Math.random() * (20 + 0 + 1));
 			test1BS.add((double) randomVal);
 		}
 		//Problems printing out half way
-		BubbleSortUP<Integer> test1 = new BubbleSortUP<>(1000);
+		//BubbleSortUP<Integer> test1 = new BubbleSortUP<>(20);
 		System.out.println();
-		//Problem doesnt even print out simple statements like TestingPurposes1 or sorted or not. 
-		//Run this next to see what i mean Lol.
-		//BubbleSortUP<Integer> test2 = new BubbleSortUP<>(10000);
+		BubbleSortUP<Double> test2 = new BubbleSortUP<>(test1BS);
+		System.out.println(test2.sort());
+		System.out.println(test2.getNAME());
+		System.out.println(test2.getSavedData());
+		System.out.println(test2.getSortedData());
+		System.out.println(test2.getRunTime());
+		System.out.println(test2.getNumElements());
 	}
 }

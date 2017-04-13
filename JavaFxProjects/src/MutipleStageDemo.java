@@ -23,7 +23,7 @@ public class MutipleStageDemo extends Application{
 		//--------------------------------------------------------------
 		Stage stage2 = new Stage();
 		stage2.setTitle("Stage 2");
-		Scene sce ne2 = new Scene(new Button("Hello World"),100,100);
+		Scene scene2 = new Scene(new Button("Hello World"),100,100);
 		stage2.setScene(scene2);
 		stage2.show();
 		//--------------------------------------------------------------

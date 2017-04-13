@@ -30,7 +30,7 @@ public class BubbleSortUP<T extends Comparable<T>> {
 		}
 		//setting up everything for the user
 		Instant start = Instant.now();
-		this.sortedData = sort((ArrayList<T>) randomArrayList);
+		this.sortedData = sortHelper((ArrayList<T>) randomArrayList);
 		Instant end = Instant.now();
 		this.savedData = (ArrayList<T>) copyArrayList;
 		this.runTime = Duration.between(start, end);
@@ -42,21 +42,18 @@ public class BubbleSortUP<T extends Comparable<T>> {
 		consolePrintOut(this.savedData);
 		System.out.println("Sorted");
 		consolePrintOut(this.sortedData);
-		System.out.println("Sorting Took " + runTime + "amount of time.");
+		System.out.println("Sorting Took " + runTime + " amount of time.");
 		// -------------------------------------------------------------
 	}
 
 	// This will sort out the given ArrayList of any type.
-	public BubbleSortUP(ArrayList<T> arrayIn) {
+	public BubbleSortUP(ArrayList<T> arrayIn) { 
 		ArrayList<T> copyArrayList = new ArrayList<>();
 		for (int i = 0; i < arrayIn.size(); i++) {
 			copyArrayList.add(arrayIn.get(i));
 		}
-		Instant start = Instant.now();
-		this.sortedData = sort(arrayIn);
-		Instant end = Instant.now();
-		this.savedData = copyArrayList;
-		this.runTime = Duration.between(start, end);
+		this.savedData = arrayIn;
+		this.sortedData = copyArrayList;
 		this.numElements = this.sortedData.size();
 		// ----------EraseAfterThisIsOnlyForTestingPurposes------------
 		System.out.println("TestingPurposes2");
@@ -72,8 +69,16 @@ public class BubbleSortUP<T extends Comparable<T>> {
 	/*
 	 * Methods That Will Do The Sorting
 	 */
+	//Method that does the sorting returns a sorting array.
+	public ArrayList<T> sort(){
+		Instant start = Instant.now();
+		this.sortedData = sortHelper(this.sortedData);
+		Instant end = Instant.now();
+		this.runTime = Duration.between(start, end);
+		return this.sortedData;
+	}
 	// This will Sort out a array list of any type
-	private ArrayList<T> sort(ArrayList<T> arrayListInput) {
+	private ArrayList<T> sortHelper(ArrayList<T> arrayListInput) {
 		for (int i = 1; i <= arrayListInput.size() - 1; i++) {
 			for (int j = 0; j <= arrayListInput.size() - 2; j++) {
 				if (arrayListInput.get(j).compareTo(arrayListInput.get(j + 1)) > 0) {
@@ -83,14 +88,16 @@ public class BubbleSortUP<T extends Comparable<T>> {
 				}
 			}
 		}
-		this.sortedData = arrayListInput;
 		return arrayListInput;
 	}
-
+	
 	// Prints out a given arraylist via console output
 	private void consolePrintOut(ArrayList<T> arrayListInput) {
 		if (arrayListInput != null) {
 			for (int i = 0; i < arrayListInput.size(); i++) {
+				if(i == 10){
+					System.out.print("\n");
+				}
 				if (i != arrayListInput.size() - 1) {
 					System.out.print(arrayListInput.get(i) + ", ");
 
