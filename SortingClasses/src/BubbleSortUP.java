@@ -3,99 +3,82 @@ import java.time.Instant;
 import java.util.ArrayList;
 
 public class BubbleSortUP<T extends Comparable<T>> {
-	/*
+	/**
 	 * Member Variables, keeping Track of Data for my GUI.
 	 */
 	private final String NAME = "Bubble Sorting Unoptimized";
-	private ArrayList<T> savedData = null;
+	private ArrayList<T> unSortedData = null;
 	private ArrayList<T> sortedData = null;
 	private int numElements = 0;
-	private long numComparisons = 0;
 	private long numSwaps = 0;
+	private long numComparisons = 0;
 	private Duration runTime = null;
 
-	/*
-	 * Constructor, given any ArrayList Type.
+	/**
+	 * Constructor, given any ArrayList Type. maybe add a default that does only
+	 * integers
 	 */
-	// This will automatically create an ArrayList of n random integers only.
-	public BubbleSortUP(int sizeOfArrayIn) {
-		//ArrayList that store the original list 
-		ArrayList<Integer> randomArrayList = new ArrayList<>();
-		//ArrayList that stores the original list no sorting what so ever
-		ArrayList<Integer> copyArrayList = new ArrayList<>();
-		for (int i = 0; i < sizeOfArrayIn; i++) {
-			int randomVal = 0 + (int) (Math.random() * (sizeOfArrayIn + 0 + 1));
-			randomArrayList.add(randomVal);
-			copyArrayList.add(randomVal);
-		}
-		//setting up everything for the user
-		Instant start = Instant.now();
-		this.sortedData = sortHelper((ArrayList<T>) randomArrayList);
-		Instant end = Instant.now();
-		this.savedData = (ArrayList<T>) copyArrayList;
-		this.runTime = Duration.between(start, end);
-		this.numElements = randomArrayList.size();
-		// ----------EraseAfterThisIsOnlyForTestingPurposes------------
-		System.out.println("TestingPurposes1");
-		System.out.println("This is the ArrayList That was Created");
-		System.out.println("Non Sorted");
-		consolePrintOut(this.savedData);
-		System.out.println("Sorted");
-		consolePrintOut(this.sortedData);
-		System.out.println("Sorting Took " + runTime + " amount of time.");
-		// -------------------------------------------------------------
-	}
-
 	// This will sort out the given ArrayList of any type.
-	public BubbleSortUP(ArrayList<T> arrayIn) { 
-		ArrayList<T> copyArrayList = new ArrayList<>();
-		for (int i = 0; i < arrayIn.size(); i++) {
-			copyArrayList.add(arrayIn.get(i));
-		}
-		this.savedData = arrayIn;
+	public BubbleSortUP(ArrayList<T> arrayIn) {
+		ArrayList<T> copyArrayList = copyArray(arrayIn);
+		this.unSortedData = arrayIn;
 		this.sortedData = copyArrayList;
 		this.numElements = this.sortedData.size();
 		// ----------EraseAfterThisIsOnlyForTestingPurposes------------
 		System.out.println("TestingPurposes2");
 		System.out.println("This is the ArrayList You Created");
 		System.out.println("Non Sorted");
-		consolePrintOut(this.savedData);
+		consolePrintOut(this.unSortedData);
 		System.out.println("Sorted");
 		consolePrintOut(this.sortedData);
 		System.out.println("Sorting Took " + runTime + "amount of time.");
 		// -------------------------------------------------------------
 	}
 
-	/*
+	/**
 	 * Methods That Will Do The Sorting
 	 */
-	//Method that does the sorting returns a sorting array.
-	public ArrayList<T> sort(){
+	//Swaper method
+	public boolean swaperMethod() {
+		
+	}
+	// Method that does the sorting returns a sorting array.
+	public ArrayList<T> sort() {
 		Instant start = Instant.now();
 		this.sortedData = sortHelper(this.sortedData);
 		Instant end = Instant.now();
 		this.runTime = Duration.between(start, end);
 		return this.sortedData;
 	}
+
 	// This will Sort out a array list of any type
 	private ArrayList<T> sortHelper(ArrayList<T> arrayListInput) {
+		int tempSwaps = 0;
+		int tempCompa = 0;
 		for (int i = 1; i <= arrayListInput.size() - 1; i++) {
+			boolean checker = 
 			for (int j = 0; j <= arrayListInput.size() - 2; j++) {
+				tempCompa++;
 				if (arrayListInput.get(j).compareTo(arrayListInput.get(j + 1)) > 0) {
+					tempSwaps++;
 					T temp = arrayListInput.get(j);
 					arrayListInput.set(j, arrayListInput.get(j + 1));
 					arrayListInput.set(j + 1, temp);
 				}
 			}
 		}
+		// assign the total swaps after after sorting array
+		this.numSwaps = tempSwaps;
+		// assign the total comparisons after sorting array
+		this.numComparisons = tempCompa;
 		return arrayListInput;
 	}
-	
+
 	// Prints out a given arraylist via console output
-	private void consolePrintOut(ArrayList<T> arrayListInput) {
+	public void consolePrintOut(ArrayList<T> arrayListInput) {
 		if (arrayListInput != null) {
 			for (int i = 0; i < arrayListInput.size(); i++) {
-				if(i == 10){
+				if (i % 10 == 0) {
 					System.out.print("\n");
 				}
 				if (i != arrayListInput.size() - 1) {
@@ -107,19 +90,27 @@ public class BubbleSortUP<T extends Comparable<T>> {
 				}
 			}
 		} else {
-			System.out.println("The array has No Reference(null)");
+			System.out.println("----The array has No Reference(null)----");
 		}
+		System.out.println("\n");
 	}
-
-	/*
+	//Copies a given Array and returns the array.
+	private ArrayList<T> copyArray(ArrayList<T> listToCopyIn) {
+		ArrayList<T> tempArray = new ArrayList<>();
+		for (int i = 0; i < listToCopyIn.size(); i++) {
+			tempArray.add(listToCopyIn.get(i));
+		}
+		return tempArray;
+	}
+	/**
 	 * Methods Getters and Setters and To String
 	 */
-	public ArrayList<T> getSavedData() {
-		return savedData;
+	public ArrayList<T> getUnSortedData() {
+		return unSortedData;
 	}
 
-	public void setSavedData(ArrayList<T> savedData) {
-		this.savedData = savedData;
+	public void setUnSortedData(ArrayList<T> savedData) {
+		this.unSortedData = savedData;
 	}
 
 	public ArrayList<T> getSortedData() {
@@ -168,7 +159,7 @@ public class BubbleSortUP<T extends Comparable<T>> {
 
 	@Override
 	public String toString() {
-		return "BubbleSortUP [NAME=" + NAME + ", savedData=" + savedData + ", sortedData=" + sortedData
+		return "BubbleSortUP [NAME=" + NAME + ", unSortedData=" + unSortedData + ", sortedData=" + sortedData
 				+ ", numElements=" + numElements + ", numComparisons=" + numComparisons + ", numSwaps=" + numSwaps
 				+ ", runTimeSeconds=" + runTime + "]";
 	}

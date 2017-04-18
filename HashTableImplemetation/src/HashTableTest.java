@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import javax.swing.JFileChooser;
@@ -9,7 +10,7 @@ public class HashTableTest {
 	 * Main method that test everything out
 	 */
 	public static void main(String[] args) throws FileNotFoundException {
-		generateSimpleList();
+		//generateSimpleList();
 		generateHashTable();
 	}
 
@@ -42,7 +43,7 @@ public class HashTableTest {
 		Scanner sc = getFile();
 		SimpleList tempSimpleList = new SimpleList();
 		while (sc.hasNextLine()) {
-			String word = sc.next();
+			String word = sc.next().toLowerCase();
 			int indexFound = tempSimpleList.find(word);
 			Entry entryTemp = new Entry(word);
 			if (indexFound > 0) {
@@ -52,9 +53,22 @@ public class HashTableTest {
 			}
 			
 		}
+		tempSimpleList.toString();
 		
 	}
-	public static void generateHashTable() {
+	/*
+	 * Public Static Method that Tests out The HashTable
+	 */
+	public static void generateHashTable() throws FileNotFoundException {
+		Scanner sc = getFile();
+		HashTable tempHashTable = new HashTable();
+		while (sc.hasNextLine()) {
+			String word = sc.next().toLowerCase();
+			Entry entryWord = new Entry(word);
+			tempHashTable.add(entryWord);
+			
+		}
+		System.out.println("Final Array -----------\n"+tempHashTable);
 		
 	}
 }
