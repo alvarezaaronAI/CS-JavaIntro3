@@ -52,7 +52,7 @@ public class Entry {
     public String toString() {
         String result = "";
 
-        result += "Word:\t" + this.word + "\n" +
+        result += "Word:\t" + this.word + "\r\n" +
                 "Count:\t" + this.count + "\n";
 
         return result;
@@ -63,7 +63,7 @@ public class Entry {
 
     	int finalI = 0;
     	for (int i = 0; i < this.word.length(); i++) {
-			finalI += ((this.word.charAt(i)) * Math.pow(31.0, this.word.length() - i));
+			finalI += ((this.word.charAt(i)) * Math.pow(31.0, this.word.length() - (i+1)));
 		}
     	return Math.abs(finalI);
     }

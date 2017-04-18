@@ -28,14 +28,6 @@ public class HashTableTest {
 		Scanner sc = new Scanner(new File(file));
 		return sc;
 	}
-
-	/*
-	 * Private Static Method that prints out the output.
-	 */
-	private static void consoleOutPut(SimpleList tempSimpleList) {
-		System.out.println(tempSimpleList.toString());
-	}
-
 	/*
 	 * Public Static method tests out the SimpleList
 	 */
@@ -69,6 +61,7 @@ public class HashTableTest {
 			
 		}
 		System.out.println("Final Array -----------\n"+tempHashTable);
+		
 		
 	}
 }

@@ -1,10 +1,6 @@
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
-import java.io.FilterWriter;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class HashTable {
@@ -74,50 +70,69 @@ public class HashTable {
 	 * Methods adds an Entry and resizes when needed
 	 */
 	public void add(Entry entryInput) {
+		// Comparing for load Factor using compare To
 		double loadFactor = loadFactor();
 		Double defaultLF = new Double(LOAD_FACTOR);
 		Double currentLF = new Double(loadFactor);
-		System.out.println("Default Load Factor " +defaultLF  + " current LoadFactor " + currentLF + " Compute " + (defaultLF.compareTo(currentLF)< 0));
+		System.out.println("Default Load Factor " + defaultLF + " current LoadFactor " + currentLF + " Compute "
+				+ (defaultLF.compareTo(currentLF) < 0));
+		// checking for resizing
 		if ((defaultLF.compareTo(currentLF) < 0)) {
 			this.resize();
 		}
-		int indexHashed = indexHashed(entryInput);
-		boolean checker = entries[indexHashed] != null;
-		System.out.println("Word '" + entryInput.getWord() + "' " + checker + " IndexHashed " + indexHashed + " inside entry " + entries[indexHashed] );
-		if (entries[indexHashed] == null) {
-			System.out.println("Word '" + entryInput.getWord()+"' " + " went through here.");
-			this.entries[indexHashed] = entryInput;
+		// checking where to put the new index
+		int indexLocation = indexHashed(entryInput);
+		boolean checker = entries[indexLocation] != null;
+		System.out.println("Word '" + entryInput.getWord() + "' " + checker + " IndexHashed " + indexLocation
+				+ " inside entry " + entries[indexLocation]);
+		if (entries[indexLocation] == null) {
+			System.out.println("Word '" + entryInput.getWord() + "' " + " went through here.");
+			this.entries[indexLocation] = entryInput;
 			this.sizeElem++;
 			System.out.println("\n Array" + Arrays.toString(this.entries));
-		} else {
-			// theres a collision do DoubleHash Method
-			int newIndexHashed = doubleHash(entryInput, indexHashed);
-			System.out.println("Word '" + entryInput.getWord() + "'  New Hashed " + newIndexHashed);
-			if (newIndexHashed > 0) {
-				this.entries[newIndexHashed] = entryInput;
-				this.sizeElem++;
+		}
+		// else if there's a collision do DoubleHash Method
+		else {
+			boolean chekcer2 = entryInput.getWord().equals(this.entries[indexLocation].getWord());
+			System.out.println(
+					"Does " + entryInput.getWord() + "-equal-" + this.entries[indexLocation] + " = " + chekcer2);
+			if (entryInput.getWord().equals(this.entries[indexLocation].getWord())) {
+				this.entries[indexLocation].incrementCount();
+			} else {
+				int newIndexHashed = doubleHash(entryInput, indexLocation);
+				System.out.println("Word '" + entryInput.getWord() + "'  New Hashed " + newIndexHashed);
+				if (newIndexHashed > 0) {
+					this.entries[newIndexHashed] = entryInput;
+					this.sizeElem++;
+				}
 			}
 			System.out.println("\n Array" + Arrays.toString(this.entries));
+			// else new Index is -1 which means theres already a value there.
 		}
 	}
 
 	/**
-	 * Private method double hash that returns the index after collision
+	 * Private method double hash that returns the index after collision or else
+	 * returns -1 if its a duplicate
 	 */
 	private int doubleHash(Entry entryInput, int indexOfEntry) {
 		// Formula Given h'(key) = 7 -((h(key)) % 7);
 		// Use h(key) = k % N, (k+j*(h'(key))% N)
 		int buckets = (7 - (indexOfEntry) % 7);
-		System.out.println("Buckets " + buckets);
 		long k = entryInput.hashCode();
 		int j = 1;
 		int newIndex = (int) ((k + j * (buckets)) % this.sizeN);
 		System.out.println("Word Hashed" + entryInput.hashCode());
 		System.out.println("New index =  == " + newIndex);
 		while (this.entries[newIndex] != null) {
-			System.out.println(" Word '" + entryInput.getWord() +"' "+ "NumberOfCollisons=  " +  j);
-			j++;
-			newIndex = (int) ((k + j * (buckets)) % this.sizeN);
+			if (entryInput.getWord().equals(this.entries[newIndex].getWord())) {
+				// increase the at that object new Index
+				this.entries[newIndex].incrementCount();
+				return -1;
+			} else {
+				j++;
+				newIndex = (int) ((k + j * (buckets)) % this.sizeN);
+			}
 		}
 		return newIndex;
 	}
@@ -153,10 +168,10 @@ public class HashTable {
 	 */
 	public void fileOutPut() {
 		try {
-			File fileIn = new File("GilbertIsABitchAss.bitchAss");
+			File fileIn = new File("WordCount.txt");
 			FileWriter data = new FileWriter(fileIn);
 			for (int i = 0; i < entries.length; i++) {
-				if (entries != null) {
+				if (entries[i] != null) {
 					data.write(entries[i] + "\r\n");
 				}
 			}
@@ -179,7 +194,7 @@ public class HashTable {
 			}
 		}
 		String finalString = sB.toString();
+		System.out.println(this.sizeElem);
 		return finalString;
 	}
 }
-
