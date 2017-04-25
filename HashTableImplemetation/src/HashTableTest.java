@@ -1,9 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.JFileChooser;
@@ -50,8 +49,9 @@ public class HashTableTest {
 			}
 		}
 		Instant end = Instant.now();
-		fileOutSimpleList(Duration.between(start, end), tempSimpleList, "SimpleListWordCount");
-
+		System.out.println("Done Sim");
+		tempSimpleList.fileOutPut(Duration.between(start, end));
+		System.out.println("Done Sim File");
 	}
 
 	/*
@@ -68,35 +68,43 @@ public class HashTableTest {
 
 		}
 		Instant end = Instant.now();
-		fileOutHashTable(Duration.between(start, end), tempHashTable, "HashTableListWordCount");
+		System.out.println("Done Hash");
+		tempHashTable.fileOutPut(Duration.between(start, end));
+		System.out.println("Done HashFile");
 	}
-	public static void fileOutSimpleList(Duration durIn, SimpleList simpleList, String fileNameInput) {
-		try {
-			File fileIn = new File(fileNameInput + ".txt");
-			FileWriter data = new FileWriter(fileIn);
-			data.write("Amount of time to get a non-sorted Entries into the SimpleList : " + durIn + "\r\n");
-			int i = 0;
-			while (simpleList.getEntry(i) != null) {
-				data.write(simpleList.getEntry(i) + "\r\n");
+
+	private static Entry[] sortingBubbleBut(HashTable hashTableInput, SimpleList simpleListInput) {
+		// Will only return one.
+		HashTable tempHashTable = hashTableInput;
+		SimpleList tempSimpleList = simpleListInput;
+		Entry[] hashTableArray = hashTableInput.getEntries();
+		Entry[] simpleListArray = simpleListInput.getEntries();
+		if (tempHashTable != null) {
+			// Get the Array of Char first word only, return the array of
+			// sortedOutEntries
+			
+			char[] firstLetterArray = new char[hashTableInput.getSizeElem()];
+			for (int i = 0; i < firstLetterArray.length; i++) {
+				if (hashTableInput.getEntries()[i] != null) {
+					char tempLetter = hashTableArray[i].getWord().charAt(0);
+					firstLetterArray[i] = tempLetter;
+				}
 			}
-			data.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	public static void fileOutHashTable(Duration durIn, HashTable hashTable, String fileNameInput) {
-		try {
-			File fileIn = new File(fileNameInput + ".txt");
-			FileWriter data = new FileWriter(fileIn);
-			data.write("Amount of time to get a non-sorted Entries into the HashTable : " + durIn + "\r\n");
-			for (int j = 0; j < hashTable.getEntries().length; j++) {
-				if (hashTable.getEntries()[j] != null) {
-					data.write(hashTable.getEntries()[j]+ "\r\n");
-				} 
+			// Once we get every letter sort out based on letters, and when
+			// swapping swap the entries as well
+		} else if (tempSimpleList != null) {
+			char[] firstLetterArray = new char[simpleListInput.getSize()];
+			for (int i = 0; i < firstLetterArray.length; i++) {
+				char tempLetter = simpleListArray[i].getWord().charAt(0);
+				firstLetterArray[i] = tempLetter;
 			}
-			data.close();
-		} catch (IOException e) {
-			e.printStackTrace();
+			
+		} else {
+			System.out.println("You cannot sort out two, just one at a time. Call the method twice.");
 		}
+		
+		return null;
+
 	}
+
 }

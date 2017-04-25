@@ -2,6 +2,7 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.Duration;
 
 public class HashTable {
 	/*
@@ -51,24 +52,16 @@ public class HashTable {
 		double loadFactor = loadFactor();
 		Double defaultLF = new Double(LOAD_FACTOR);
 		Double currentLF = new Double(loadFactor);
-		// System.out.println("Default Load Factor " + defaultLF + " current
-		// LoadFactor " + currentLF + " Compute "
-		// + (defaultLF.compareTo(currentLF) < 0));
+
 		// checking for resizing
 		if ((defaultLF.compareTo(currentLF) < 0)) {
 			this.resize();
-			// System.out.println("\n Array" + Arrays.toString(this.entries));
+		
 		}
 		// checking where to put the new index
 		int indexLocation = indexHashed(entryInput);
-		// boolean checker = entries[indexLocation] != null;
-		// System.out.println("Word '" + entryInput.getWord() + "' " + checker +
-		// " IndexHashed " + indexLocation
-		// + " HashCode " + entryInput.hashCode() + " inside entry " +
-		// entries[indexLocation]);
 		if (entries[indexLocation] == null) {
-			// System.out.println("Word '" + entryInput.getWord() + "' " + "
-			// went through here.");
+		
 			this.entries[indexLocation] = entryInput;
 			this.sizeElem++;
 		}
@@ -85,7 +78,6 @@ public class HashTable {
 			}
 			// else new Index is -1 which means theres already a value there.
 		}
-		// System.out.println(Arrays.toString(entries));
 
 	}
 
@@ -121,14 +113,10 @@ public class HashTable {
 		// Formula Given h'(key) = 7 -((h(key)) % 7);
 		// Use h(key) = k % N, (k+j*(h'(key))% N)
 		int buckets = (7 - (indexOfEntry) % 7);
-		System.out.println("Buckets " + buckets);
 		long k = entryInput.hashCode();
 		int j = 1;
 		int newIndex = (int) ((k + j * (buckets)) % this.sizeN);
-		System.out.println("Word Hashed" + entryInput.hashCode());
-		System.out.println("New index =  == " + newIndex);
 		while (this.entries[newIndex] != null) {
-			System.out.println(" Word '" + entryInput.getWord() + "' " + "NumberOfCollisons=  " + j);
 			if (entryInput.getWord().equals(this.entries[newIndex].getWord())) {
 				// increase the at that object new Index
 				this.entries[newIndex].incrementCount();
@@ -170,10 +158,11 @@ public class HashTable {
 	/**
 	 * Public method that allows me to print out the entries array into a file
 	 */
-	public void fileOutPut() {
+	public void fileOutPut(Duration durationTimeIn) {
 		try {
 			File fileIn = new File("HashTableWordCount.txt");
 			FileWriter data = new FileWriter(fileIn);
+			data.write("Amount of time to get a non-sorted Entries into the HashTableList : " + durationTimeIn + "\r\n\n -------------------");
 			for (int i = 0; i < entries.length; i++) {
 				if (entries[i] != null) {
 					data.write(entries[i] + "\r\n");
@@ -199,7 +188,6 @@ public class HashTable {
 			}
 		}
 		String finalString = sB.toString();
-		// System.out.println(this.sizeElem);
 		return finalString;
 	}
 
