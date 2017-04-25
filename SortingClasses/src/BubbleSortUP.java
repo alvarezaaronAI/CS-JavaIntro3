@@ -24,24 +24,20 @@ public class BubbleSortUP<T extends Comparable<T>> {
 		this.unSortedData = arrayIn;
 		this.sortedData = copyArrayList;
 		this.numElements = this.sortedData.size();
-		// ----------EraseAfterThisIsOnlyForTestingPurposes------------
-		System.out.println("TestingPurposes2");
-		System.out.println("This is the ArrayList You Created");
-		System.out.println("Non Sorted");
-		consolePrintOut(this.unSortedData);
-		System.out.println("Sorted");
-		consolePrintOut(this.sortedData);
-		System.out.println("Sorting Took " + runTime + "amount of time.");
-		// -------------------------------------------------------------
+//		// ----------EraseAfterThisIsOnlyForTestingPurposes------------
+//		System.out.println("TestingPurposes2");
+//		System.out.println("This is the ArrayList You Created");
+//		System.out.println("Non Sorted");
+//		consolePrintOut(this.unSortedData);
+//		System.out.println("Sorted");
+//		consolePrintOut(this.sortedData);
+//		System.out.println("Sorting Took " + runTime + "amount of time.");
+//		// -------------------------------------------------------------
 	}
 
 	/**
 	 * Methods That Will Do The Sorting
 	 */
-	//Swaper method
-	public boolean swaperMethod() {
-		
-	}
 	// Method that does the sorting returns a sorting array.
 	public ArrayList<T> sort() {
 		Instant start = Instant.now();
@@ -56,7 +52,6 @@ public class BubbleSortUP<T extends Comparable<T>> {
 		int tempSwaps = 0;
 		int tempCompa = 0;
 		for (int i = 1; i <= arrayListInput.size() - 1; i++) {
-			boolean checker = 
 			for (int j = 0; j <= arrayListInput.size() - 2; j++) {
 				tempCompa++;
 				if (arrayListInput.get(j).compareTo(arrayListInput.get(j + 1)) > 0) {
@@ -73,7 +68,6 @@ public class BubbleSortUP<T extends Comparable<T>> {
 		this.numComparisons = tempCompa;
 		return arrayListInput;
 	}
-
 	// Prints out a given arraylist via console output
 	public void consolePrintOut(ArrayList<T> arrayListInput) {
 		if (arrayListInput != null) {
