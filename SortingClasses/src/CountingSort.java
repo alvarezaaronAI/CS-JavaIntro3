@@ -1,6 +1,7 @@
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Arrays;
 
 public class CountingSort {
 	/**
@@ -10,8 +11,6 @@ public class CountingSort {
 	private int[] unSortedData = null;
 	private int[] sortedData = null;
 	private int numElements = 0;
-	private long numSwaps = 0;
-	private long numComparisons = 0;
 	private Duration runTime = null;
 
 	/**
@@ -50,7 +49,7 @@ public class CountingSort {
 
 	}
 
-	// This will Sort out a array list of any type
+	// This will Sort out a array of int
 	private int[] countingSort(int[] arrayInput, int k) {
 		int[] result = new int[arrayInput.length];
 		int[] counts = new int[k + 1];
@@ -67,6 +66,7 @@ public class CountingSort {
 			result[counts[arrayInput[i]] - 1] = arrayInput[i];
 			counts[arrayInput[i]]--;
 		}
+		
 		return result;
 
 	}
@@ -148,21 +148,6 @@ public class CountingSort {
 		this.numElements = numElements;
 	}
 
-	public long getNumSwaps() {
-		return numSwaps;
-	}
-
-	public void setNumSwaps(long numSwaps) {
-		this.numSwaps = numSwaps;
-	}
-
-	public long getNumComparisons() {
-		return numComparisons;
-	}
-
-	public void setNumComparisons(long numComparisons) {
-		this.numComparisons = numComparisons;
-	}
 
 	public Duration getRunTime() {
 		return runTime;
@@ -174,6 +159,12 @@ public class CountingSort {
 
 	public String getNAME() {
 		return NAME;
+	}
+
+	@Override
+	public String toString() {
+		return "CountingSort [NAME=" + NAME + ", unSortedData=" + Arrays.toString(unSortedData) + ", sortedData="
+				+ Arrays.toString(sortedData) + ", numElements=" + numElements + ", runTime=" + runTime + "]";
 	}
 
 }

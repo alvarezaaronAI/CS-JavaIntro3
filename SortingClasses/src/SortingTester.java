@@ -98,8 +98,6 @@ public class SortingTester {
 		System.out.println(Arrays.toString(test8.getUnSortedData()));
 		System.out.println(Arrays.toString(test8.getSortedData()));
 		System.out.println("Time " + test8.getRunTime());
-		System.out.println("Num of swaps" + test8.getNumSwaps());
-		System.out.println("Num of comparisons" + test8.getNumComparisons());
 		System.out.println("Num of elements" + test8.getNumElements());
 		
 	}
