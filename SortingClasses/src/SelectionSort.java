@@ -24,15 +24,6 @@ public class SelectionSort<T extends Comparable<T>> {
 		this.unSortedData = arrayIn;
 		this.sortedData = copyArrayList;
 		this.numElements = this.sortedData.size();
-		// ----------EraseAfterThisIsOnlyForTestingPurposes------------
-//		System.out.println("TestingPurposes2");
-//		System.out.println("This is the ArrayList You Created");
-//		System.out.println("Non Sorted");
-//		consolePrintOut(this.unSortedData);
-//		System.out.println("Sorted");
-//		consolePrintOut(this.sortedData);
-//		System.out.println("Sorting Took " + runTime + "amount of time.");
-		// -------------------------------------------------------------
 	}
 
 	/**

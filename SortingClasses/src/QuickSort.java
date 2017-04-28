@@ -24,15 +24,6 @@ public class QuickSort<T extends Comparable<T>> {
 		this.unSortedData = arrayIn;
 		this.sortedData = copyArrayList;
 		this.numElements = this.sortedData.size();
-		// ----------EraseAfterThisIsOnlyForTestingPurposes------------
-		// System.out.println("TestingPurposes2");
-		// System.out.println("This is the ArrayList You Created");
-		// System.out.println("Non Sorted");
-		// consolePrintOut(this.unSortedData);
-		// System.out.println("Sorted");
-		// consolePrintOut(this.sortedData);
-		// System.out.println("Sorting Took " + runTime + "amount of time.");
-		// -------------------------------------------------------------
 	}
 
 	/**
@@ -66,8 +57,8 @@ public class QuickSort<T extends Comparable<T>> {
 		T pivot = arrayListInput.get(high);
 		int i = low - 1;
 		for (int j = low; j <= high - 1; j++) {
-			if (arrayListInput.get(j).compareTo(pivot) < 0) {
-				this.numComparisons++;
+			this.numComparisons++;
+			if (arrayListInput.get(j).compareTo(pivot) <= 0) {
 				i = i + 1;
 				this.numSwaps++;
 				T temp = arrayListInput.get(i);
@@ -79,6 +70,7 @@ public class QuickSort<T extends Comparable<T>> {
 		T temp = arrayListInput.get(i + 1);
 		arrayListInput.set(i + 1, arrayListInput.get(high));
 		arrayListInput.set(high, temp);
+		
 		return i + 1;
 	}
 

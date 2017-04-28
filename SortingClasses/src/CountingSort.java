@@ -1,6 +1,7 @@
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CountingSort {
@@ -17,9 +18,13 @@ public class CountingSort {
 	 * Constructor, given Integer Array Type.
 	 */
 	// This will sort out the given Array of any type.
-	public CountingSort(int[] arrayIn) {
-		int[] copyArray = copyArray(arrayIn);
-		this.unSortedData = arrayIn;
+	public CountingSort(ArrayList<Integer> arrayListInput) {
+		int[] tempArray = new int[arrayListInput.size()];
+		for (int i = 0; i < tempArray.length; i++) {
+			tempArray[i] = arrayListInput.get(i);
+		}
+		int[] copyArray = copyArray(tempArray);
+		this.unSortedData = tempArray;
 		this.sortedData = copyArray;
 		this.numElements = this.sortedData.length;
 	}
@@ -71,7 +76,7 @@ public class CountingSort {
 
 	}
 
-	// Prints out a given arraylist via console output
+	// Prints out a given array via console output
 	public void printUnsortedArray() {
 		if (this.unSortedData != null) {
 			for (int i = 0; i < this.unSortedData.length; i++) {
@@ -90,7 +95,7 @@ public class CountingSort {
 		} else {
 			System.out.println("----The array has No Reference(null)----");
 		}
-	} // Prints out a given arraylist via console output
+	} // Prints out a given array via console output
 
 	public void printSortedArray() {
 		if (this.sortedData != null) {

@@ -24,15 +24,6 @@ public class InsertionSort<T extends Comparable<T>> {
 		this.unSortedData = arrayIn;
 		this.sortedData = copyArrayList;
 		this.numElements = this.sortedData.size();
-		// ----------EraseAfterThisIsOnlyForTestingPurposes------------
-//		System.out.println("TestingPurposes2");
-//		System.out.println("This is the ArrayList You Created");
-//		System.out.println("Non Sorted");
-//		consolePrintOut(this.unSortedData);
-//		System.out.println("Sorted");
-//		consolePrintOut(this.sortedData);
-//		System.out.println("Sorting Took " + runTime + "amount of time.");
-		// -------------------------------------------------------------
 	}
 
 	/**
@@ -54,10 +45,9 @@ public class InsertionSort<T extends Comparable<T>> {
 		for (int i = 0; i <= arrayListInput.size() - 1; i++) {
 			T temp = arrayListInput.get(i);
 			int j = i;
-
+			
 			while ((j > 0) && (temp.compareTo(arrayListInput.get(j - 1)) < 0)) {
 				tempCompa++;
-				tempSwaps++;
 				arrayListInput.set(j, arrayListInput.get(j - 1));
 				j--;
 			}
