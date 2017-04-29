@@ -43,10 +43,7 @@ public class GUISorting extends Application{
 		window.show();
 		//------------------------------------------
 	}
-	public ObservableList<BubbleSortUP> getBubbleSortUP() {
-		ObservableList<BubbleSortUP> bubbleSort = FXCollections.observableArrayList();
-		
-		return null;
+	public static void main(String[] args) {
+		launch(args);
 	}
-	
 }

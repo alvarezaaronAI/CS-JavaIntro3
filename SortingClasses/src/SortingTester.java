@@ -5,12 +5,12 @@ public class SortingTester {
 	public static void main(String[] args) {
 		ArrayList<Integer> test1BS = new ArrayList<>();
 		for (int i = 0; i < 100; i++) {
-			int randomVal = 0 + (int) (Math.random() * (100 + 0 + 1));
+			int randomVal = 0 + (int) (Math.random() * (1000+ 0 + 1));
 			test1BS.add(randomVal);
 		}
 		BubbleSortUP<Integer> test2 = new BubbleSortUP<>(test1BS);
 		System.out.println(test2.getNAME());
-		System.out.println(test2.sort());
+		test2.sort();
 		System.out.println(test2.getUnSortedData());
 		System.out.println(test2.getSortedData());
 		System.out.println("Time " + test2.getRunTime());
@@ -23,7 +23,7 @@ public class SortingTester {
 
 		BubbleSortOP<Integer> test3 = new BubbleSortOP<>(test1BS);
 		System.out.println(test3.getNAME());
-		System.out.println(test3.sort());
+		test3.sort();
 		System.out.println(test3.getUnSortedData());
 		System.out.println(test3.getSortedData());
 		System.out.println("Time " + test3.getRunTime());
@@ -36,7 +36,7 @@ public class SortingTester {
 
 		SelectionSort<Integer> test4 = new SelectionSort<>(test1BS);
 		System.out.println(test4.getNAME());
-		System.out.println(test4.sort());
+		test4.sort();
 		System.out.println(test4.getUnSortedData());
 		System.out.println(test4.getSortedData());
 		System.out.println("Time " + test4.getRunTime());
@@ -49,7 +49,7 @@ public class SortingTester {
 
 		InsertionSort<Integer> test5 = new InsertionSort<>(test1BS);
 		System.out.println(test5.getNAME());
-		System.out.println(test5.sort());
+		test5.sort();
 		System.out.println(test5.getUnSortedData());
 		System.out.println(test5.getSortedData());
 		System.out.println("Time " + test5.getRunTime());
@@ -62,7 +62,7 @@ public class SortingTester {
 
 		MergeSort<Integer> test6 = new MergeSort<>(test1BS);
 		System.out.println(test6.getNAME());
-		System.out.println(test6.sort());
+		test6.sort();
 		System.out.println(test6.getUnSortedData());
 		System.out.println(test6.getSortedData());
 		System.out.println("Time " + test6.getRunTime());
@@ -75,7 +75,7 @@ public class SortingTester {
 
 		QuickSort<Integer> test7 = new QuickSort<>(test1BS);
 		System.out.println(test7.getNAME());
-		System.out.println(test7.sort());
+		test7.sort();
 		System.out.println(test7.getUnSortedData());
 		System.out.println(test7.getSortedData());
 		System.out.println("Time " + test7.getRunTime());
@@ -104,6 +104,33 @@ public class SortingTester {
 		System.out.println(test9.getSortedData());
 		System.out.println("Time " + test9.getRunTime());
 		System.out.println("Num of elements" + test9.getNumElements());
+		
+		System.out.println();
+		System.out.println();
+		
+		OddEvenSort<Integer> test10 = new OddEvenSort<>(test1BS);
+		System.out.println(test10.getNAME());
+		test10.sort();
+		System.out.println(test10.getUnSortedData());
+		System.out.println(test10.getSortedData());
+		System.out.println("Num of swaps" + test10.getNumSwaps());
+		System.out.println("Num of comparisons" + test10.getNumComparisons());
+		System.out.println("Time " + test10.getRunTime());
+		System.out.println("Num of elements" + test10.getNumElements());
+		
+		System.out.println();
+		System.out.println();
+		
+		GnomeSort<Integer> test11 = new GnomeSort<>(test1BS);
+		System.out.println(test11.getNAME());
+		test11.sort();
+		System.out.println(test11.getUnSortedData());
+		System.out.println(test11.getSortedData());
+		System.out.println("Num of swaps" + test11.getNumSwaps());
+		System.out.println("Num of comparisons" + test11.getNumComparisons());
+		System.out.println("Time " + test11.getRunTime());
+		System.out.println("Num of elements" + test11.getNumElements());
+		
 	}
 
 }
