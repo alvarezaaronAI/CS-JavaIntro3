@@ -1,17 +1,19 @@
-
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class CountingSort {
+public class CountingSort<T> implements Sorts {
 	/**
 	 * Member Variables, keeping Track of Data for my GUI.
 	 */
 	private final String NAME = "Counting Sort";
 	private int[] unSortedData = null;
 	private int[] sortedData = null;
+	private String unSortedDataString = " ";
+	private String sortedDataString = " ";
 	private int numElements = 0;
+	private long numSwaps = 0;
+	private long numComparisons = 0;
 	private Duration runTime = null;
 
 	/**
@@ -21,24 +23,28 @@ public class CountingSort {
 	public CountingSort(ArrayList<Integer> arrayListInput) {
 		int[] tempArray = new int[arrayListInput.size()];
 		for (int i = 0; i < tempArray.length; i++) {
+			
 			tempArray[i] = arrayListInput.get(i);
 		}
 		int[] copyArray = copyArray(tempArray);
 		this.unSortedData = tempArray;
 		this.sortedData = copyArray;
 		this.numElements = this.sortedData.length;
+		sort();
+		System.out.println("Counting" + numElements);
 	}
 
 	/**
 	 * Methods That Will Do The Sorting
 	 */
 	// Method that does the sorting returns a sorting array.
-	public int[] sort() {
+	public void sort() {
 		Instant start = Instant.now();
 		this.sortedData = sortHelper(this.sortedData);
 		Instant end = Instant.now();
 		this.runTime = Duration.between(start, end);
-		return this.sortedData;
+		this.unSortedDataString = stringBuilder(this.unSortedData);
+		this.sortedDataString = stringBuilder(this.sortedData);
 	}
 
 	private int[] sortHelper(int[] arrayInput) {
@@ -48,7 +54,6 @@ public class CountingSort {
 				tempK = arrayInput[i];
 			}
 		}
-		System.out.println("Hey" +tempK);
 
 		return countingSort(arrayInput, tempK);
 
@@ -61,7 +66,7 @@ public class CountingSort {
 		for (int i = 0; i <= k; i++) {
 			counts[i] = 0;
 		}
-		for (int i = 0; i <= arrayInput.length-1; i++) {
+		for (int i = 0; i <= arrayInput.length - 1; i++) {
 			counts[arrayInput[i]]++;
 		}
 		for (int i = 1; i <= k; i++) {
@@ -71,50 +76,30 @@ public class CountingSort {
 			result[counts[arrayInput[i]] - 1] = arrayInput[i];
 			counts[arrayInput[i]]--;
 		}
-		
+
 		return result;
 
 	}
 
-	// Prints out a given array via console output
-	public void printUnsortedArray() {
-		if (this.unSortedData != null) {
-			for (int i = 0; i < this.unSortedData.length; i++) {
-				if (i % 10 == 0) {
-					System.out.print("\n");
+	// Prints out a given array turn into String Data
+	private String stringBuilder(int[] array) {
+		StringBuilder tempString = new StringBuilder();
+		if (array != null) {
+			for (int i = 0; i < array.length; i++) {
+				if (i % 20 == 0) {
+					tempString.append("\n");
 				}
-				if (i != this.unSortedData.length - 1) {
-					System.out.print(this.unSortedData[i] + ", ");
+				if (i != array.length - 1) {
+					tempString.append(" " + array[i] + ", ");
 
 				} else {
-					System.out.print(this.unSortedData[i] + "\n");
-
+					tempString.append(" " + array[i] + "\n ");
 				}
-
 			}
-		} else {
-			System.out.println("----The array has No Reference(null)----");
 		}
-	} // Prints out a given array via console output
-
-	public void printSortedArray() {
-		if (this.sortedData != null) {
-			for (int i = 0; i < this.sortedData.length; i++) {
-				if (i % 10 == 0) {
-					System.out.print("\n");
-				}
-				if (i != this.sortedData.length - 1) {
-					System.out.print(this.sortedData[i] + ", ");
-
-				} else {
-					System.out.print(this.sortedData[i] + "\n");
-
-				}
-
-			}
-		} else {
-			System.out.println("----The array has No Reference(null)----");
-		}
+		tempString.append(" \n");
+		String finaltemp = tempString.toString();
+		return finaltemp;
 	}
 
 	// Copies a given Array and returns the array.
@@ -127,49 +112,43 @@ public class CountingSort {
 	}
 
 	/**
-	 * Methods Getters and Setters and To String
+	 * Methods Getters
 	 */
-	public int[] getUnSortedData() {
-		return unSortedData;
+
+	public long getNumSwaps() {
+		return numSwaps;
 	}
 
-	public void setUnSortedData(int[] unSortedData) {
-		this.unSortedData = unSortedData;
+	public long getNumComparisons() {
+		return numComparisons;
+	}
+
+	public int[] getUnSortedData() {
+		return unSortedData;
 	}
 
 	public int[] getSortedData() {
 		return sortedData;
 	}
 
-	public void setSortedData(int[] sortedData) {
-		this.sortedData = sortedData;
-	}
-
 	public int getNumElements() {
 		return numElements;
 	}
 
-	public void setNumElements(int numElements) {
-		this.numElements = numElements;
-	}
-
-
 	public Duration getRunTime() {
 		return runTime;
 	}
-
-	public void setRunTime(Duration runTime) {
-		this.runTime = runTime;
-	}
-
 	public String getNAME() {
 		return NAME;
 	}
 
-	@Override
-	public String toString() {
-		return "CountingSort [NAME=" + NAME + ", unSortedData=" + Arrays.toString(unSortedData) + ", sortedData="
-				+ Arrays.toString(sortedData) + ", numElements=" + numElements + ", runTime=" + runTime + "]";
+	public String getUnSortedDataString() {
+		return unSortedDataString;
 	}
+
+	public String getSortedDataString() {
+		return sortedDataString;
+	}
+
 
 }

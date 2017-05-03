@@ -1,0 +1,21 @@
+.root{
+	-fx-font-size:10pt;
+	-fx-background-color:black;
+	-fx-background-image:url("galaxy.jpg");
+}
+.title{
+	-fx-font-size:20pt;
+	-fx-font-style:italic;
+	-fx-fill: LightSkyBlue;
+}
+.geneButton{
+	-fx-base:LightSkyBlue;
+	-fx-padding:20px;
+}
+.mainVBox{
+	-fx-alignment:center;
+	-fx-base:LightSeaGreen;
+}
+.mainHBox{
+	-fx-alignment:center;
+}

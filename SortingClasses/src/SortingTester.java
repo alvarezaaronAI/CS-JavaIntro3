@@ -1,13 +1,15 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class SortingTester {
 	public static void main(String[] args) {
 		ArrayList<Integer> test1BS = new ArrayList<>();
-		for (int i = 0; i < 100; i++) {
-			int randomVal = 0 + (int) (Math.random() * (1000+ 0 + 1));
+		for (int i = 0; i < 11; i++) {
+			int randomVal = 0 + (int) (Math.random() * (10 + 0 + 1));
 			test1BS.add(randomVal);
 		}
+
 		BubbleSortUP<Integer> test2 = new BubbleSortUP<>(test1BS);
 		System.out.println(test2.getNAME());
 		test2.sort();
@@ -104,10 +106,10 @@ public class SortingTester {
 		System.out.println(test9.getSortedData());
 		System.out.println("Time " + test9.getRunTime());
 		System.out.println("Num of elements" + test9.getNumElements());
-		
+
 		System.out.println();
 		System.out.println();
-		
+
 		OddEvenSort<Integer> test10 = new OddEvenSort<>(test1BS);
 		System.out.println(test10.getNAME());
 		test10.sort();
@@ -117,10 +119,10 @@ public class SortingTester {
 		System.out.println("Num of comparisons" + test10.getNumComparisons());
 		System.out.println("Time " + test10.getRunTime());
 		System.out.println("Num of elements" + test10.getNumElements());
-		
+
 		System.out.println();
 		System.out.println();
-		
+
 		GnomeSort<Integer> test11 = new GnomeSort<>(test1BS);
 		System.out.println(test11.getNAME());
 		test11.sort();
@@ -130,7 +132,7 @@ public class SortingTester {
 		System.out.println("Num of comparisons" + test11.getNumComparisons());
 		System.out.println("Time " + test11.getRunTime());
 		System.out.println("Num of elements" + test11.getNumElements());
-		
+
 	}
 
 }
