@@ -31,8 +31,7 @@ public class CountingSort<T> implements Sorts {
 		this.sortedData = copyArray;
 		this.numElements = this.sortedData.length;
 		sort();
-		System.out.println("Counting" + numElements);
-	}
+		}
 
 	/**
 	 * Methods That Will Do The Sorting

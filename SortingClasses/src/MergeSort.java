@@ -28,7 +28,6 @@ public class MergeSort<T extends Comparable<T>> implements Sorts {
 		this.sortedData = copyArrayList;
 		this.numElements = this.sortedData.size();
 		sort();
-		System.out.println("Merge" + numElements);
 	}
 
 	/**

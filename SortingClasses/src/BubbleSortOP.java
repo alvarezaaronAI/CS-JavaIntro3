@@ -12,8 +12,8 @@ public class BubbleSortOP<T extends Comparable<T>> implements Sorts {
 	private String unSortedDataString = " ";
 	private String sortedDataString = " ";
 	private int numElements = 0;
-	private long numSwaps = 0;
-	private long numComparisons = 0;
+	private Long numSwaps = 0l;
+	private Long numComparisons = 0l;
 	private Duration runTime = null;
 
 	/**
@@ -27,7 +27,6 @@ public class BubbleSortOP<T extends Comparable<T>> implements Sorts {
 		this.sortedData = copyArrayList;
 		this.numElements = this.sortedData.size();
 		sort();
-		System.out.println("Bubble OP" + numElements);
 	}
 
 	/**
@@ -47,14 +46,12 @@ public class BubbleSortOP<T extends Comparable<T>> implements Sorts {
 
 	// This will Sort out a array list of any type
 	private ArrayList<T> sortHelper(ArrayList<T> arrayListInput) {
-		int tempSwaps = 0;
-		int tempCompa = 0;
 		for (int i = 1; i <= arrayListInput.size() - 1; i++) {
 			boolean swapped = false;
 			for (int j = 0; j <= arrayListInput.size() - 2; j++) {
-				tempCompa++;
+				this.numComparisons++;
 				if (arrayListInput.get(j).compareTo(arrayListInput.get(j + 1)) > 0) {
-					tempSwaps++;
+					this.numSwaps++;
 					T temp = arrayListInput.get(j);
 					arrayListInput.set(j, arrayListInput.get(j + 1));
 					arrayListInput.set(j + 1, temp);
@@ -65,10 +62,6 @@ public class BubbleSortOP<T extends Comparable<T>> implements Sorts {
 				break;
 			}
 		}
-		// assign the total swaps after after sorting array
-		this.numSwaps = tempSwaps;
-		// assign the total comparisons after sorting array
-		this.numComparisons = tempCompa;
 		return arrayListInput;
 	}
 

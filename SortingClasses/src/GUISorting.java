@@ -13,6 +13,7 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -23,24 +24,16 @@ public class GUISorting extends Application {
 	private Button generButton;
 	private Text example1;
 	private Text example2;
-	private ObservableList<Sorts> diez;
-	private ObservableList<Sorts> cien;
-	private ObservableList<Sorts> mil;
-	private ObservableList<Sorts> diezMil;
-	private ObservableList<Sorts> cienMil;
-	final ProgressIndicator loadingIndicator = new ProgressIndicator();
+	private Text example3;
+	private Text example4;
+	private ObservableList<Sorts> mainTableData;
+	private ObservableList<Sorts> bigDataTable;
 	final Button button = new Button("Click To Start");
 	private TableView<Sorts> mainTable;
-	private TableView<Sorts> size10;
-	private TableView<Sorts> size100;
-	private TableView<Sorts> size1000;
-	private TableView<Sorts> size10000;
-	private TableView<Sorts> size100000;
+	private TableView<Sorts> bigTable;
 
 	@SuppressWarnings("unchecked")
 	public void start(Stage primaryStage) throws Exception {
-		// Setting up Loading Screen
-		loadingIndicator.setVisible(false);
 		// ------------------------------------------
 		// Setting Window/Stage and Naming the window
 		Stage window = primaryStage;
@@ -55,29 +48,20 @@ public class GUISorting extends Application {
 		generButton.getStyleClass().add("geneButton");
 		example1 = new Text("example");
 		example2 = new Text("example");
+		example3 = new Text("example");
+		example4 = new Text("example");
 		// ------------------------------------------
-		diez = getSize10();
-		cien = getSize100();
-		mil = getSize1000();
-		diezMil = getSize10000();
-		//cienMil = getSize100000();
-		
-		// ------------------------------------------Sorting Tables------------------------------------
+		mainTableData = mainList();
+		bigDataTable = getSize100000();
+
+		// ------------------------------------------Sorting
+		// Tables------------------------------------
 		// ----------Table Views-----------
 		mainTable = new TableView<>();
 		mainTable.getStyleClass().add("mainTable");
-		size10 = new TableView<>();
-		size10.getStyleClass().add("size10"); 
-		size100 = new TableView<>();
-		size100.getStyleClass().add("size100");
-		size1000 = new TableView<>();
-		size1000.getStyleClass().add("size1000");
-		size10000 = new TableView<>();
-		size10000.getStyleClass().add("size10000");
-		size100000 = new TableView<>();
-		size100000.getStyleClass().add("size100000");
-		// ----------Columns For Tables
-		// -----------------------
+		bigTable = new TableView<>();
+		bigTable.getStyleClass().add("bigTable");
+		// ----------Columns For Tables-----------------------
 		// Setting Up Name Column
 		TableColumn<Sorts, String> nameColumn0 = new TableColumn<>("SortingName");
 		nameColumn0.setMinWidth(200);
@@ -111,7 +95,7 @@ public class GUISorting extends Application {
 		TableColumn<Sorts, Integer> sortedColumn0 = new TableColumn<>("Sorted Data");
 		sortedColumn0.setMinWidth(650);
 		sortedColumn0.setCellValueFactory(new PropertyValueFactory<>("sortedDataString"));
-		// --------------------------------------------------------------------------
+		//----------------------------------------------------------------
 		TableColumn<Sorts, String> nameColumn1 = new TableColumn<>("SortingName");
 		nameColumn1.setMinWidth(200);
 		nameColumn1.getStyleClass().add("nameCol1");
@@ -144,138 +128,47 @@ public class GUISorting extends Application {
 		TableColumn<Sorts, Integer> sortedColumn1 = new TableColumn<>("Sorted Data");
 		sortedColumn1.setMinWidth(650);
 		sortedColumn1.setCellValueFactory(new PropertyValueFactory<>("sortedDataString"));
-		// --------------------------------------------------------------------------
-		TableColumn<Sorts, String> nameColumn2 = new TableColumn<>("SortingName");
-		nameColumn2.setMinWidth(200);
-		nameColumn2.getStyleClass().add("nameCol2");
-		nameColumn2.setCellValueFactory(new PropertyValueFactory<>("NAME"));
-		// Setting Up Size Column
-		TableColumn<Sorts, Integer> sizeColumn2 = new TableColumn<>("Size");
-		sizeColumn2.setMinWidth(50);
-		sizeColumn2.getStyleClass().add("sizeCol2");
-		sizeColumn2.setCellValueFactory(new PropertyValueFactory<>("numElements"));
-		// Setting Up Swaps Column
-		TableColumn<Sorts, Integer> swapColumn2 = new TableColumn<>("Swaps");
-		swapColumn2.setMinWidth(100);
-		swapColumn2.getStyleClass().add("swapCol2");
-		swapColumn2.setCellValueFactory(new PropertyValueFactory<>("numSwaps"));
-		// Setting UP Comparisons Column
-		TableColumn<Sorts, Integer> compColumn2 = new TableColumn<>("Comparisons");
-		compColumn2.setMinWidth(100);
-		compColumn2.getStyleClass().add("compCol2");
-		compColumn2.setCellValueFactory(new PropertyValueFactory<>("numComparisons"));
-		// Setting Up RunTime Column
-		TableColumn<Sorts, Integer> runTColumn2 = new TableColumn<>("Run Time(Sec)");
-		runTColumn2.setMinWidth(50);
-		runTColumn2.getStyleClass().add("runTCol2");
-		runTColumn2.setCellValueFactory(new PropertyValueFactory<>("runTime"));
-		// Seting Up Unsorted data
-		TableColumn<Sorts, Integer> unsortColumn2 = new TableColumn<>("Unsorted Data");
-		unsortColumn2.setMinWidth(650);
-		unsortColumn2.setCellValueFactory(new PropertyValueFactory<>("unSortedDataString"));
-		// Seting Up Sorted Data
-		TableColumn<Sorts, Integer> sortedColumn2 = new TableColumn<>("Sorted Data");
-		sortedColumn2.setMinWidth(650);
-		sortedColumn2.setCellValueFactory(new PropertyValueFactory<>("sortedDataString"));
-		// --------------------------------------------------------------------------
-		TableColumn<Sorts, String> nameColumn3 = new TableColumn<>("SortingName");
-		nameColumn3.setMinWidth(200);
-		nameColumn3.getStyleClass().add("nameCol3");
-		nameColumn3.setCellValueFactory(new PropertyValueFactory<>("NAME"));
-		// Setting Up Size Column
-		TableColumn<Sorts, Integer> sizeColumn3 = new TableColumn<>("Size");
-		sizeColumn3.setMinWidth(50);
-		sizeColumn3.getStyleClass().add("sizeCol3");
-		sizeColumn3.setCellValueFactory(new PropertyValueFactory<>("numElements"));
-		// Setting Up Swaps Column
-		TableColumn<Sorts, Integer> swapColumn3 = new TableColumn<>("Swaps");
-		swapColumn3.setMinWidth(100);
-		swapColumn3.getStyleClass().add("swapCol3");
-		swapColumn3.setCellValueFactory(new PropertyValueFactory<>("numSwaps"));
-		// Setting UP Comparisons Column
-		TableColumn<Sorts, Integer> compColumn3 = new TableColumn<>("Comparisons");
-		compColumn3.setMinWidth(100);
-		compColumn3.getStyleClass().add("compCol3");
-		compColumn3.setCellValueFactory(new PropertyValueFactory<>("numComparisons"));
-		// Setting Up RunTime Column
-		TableColumn<Sorts, Integer> runTColumn3 = new TableColumn<>("Run Time(Sec)");
-		runTColumn3.setMinWidth(50);
-		runTColumn3.getStyleClass().add("runTCol3");
-		runTColumn3.setCellValueFactory(new PropertyValueFactory<>("runTime"));
-		// Seting Up Unsorted data
-		TableColumn<Sorts, Integer> unsortColumn3 = new TableColumn<>("Unsorted Data");
-		unsortColumn3.setMinWidth(650);
-		unsortColumn3.setCellValueFactory(new PropertyValueFactory<>("unSortedDataString"));
-		// Seting Up Sorted Data
-		TableColumn<Sorts, Integer> sortedColumn3 = new TableColumn<>("Sorted Data");
-		sortedColumn3.setMinWidth(650);
-		sortedColumn3.setCellValueFactory(new PropertyValueFactory<>("sortedDataString"));
-		// --------------------------------------------------------------------------
-		TableColumn<Sorts, String> nameColumn4 = new TableColumn<>("SortingName");
-		nameColumn4.setMinWidth(200);
-		nameColumn4.getStyleClass().add("nameCol4");
-		nameColumn4.setCellValueFactory(new PropertyValueFactory<>("NAME"));
-		// Setting Up Size Column
-		TableColumn<Sorts, Integer> sizeColumn4 = new TableColumn<>("Size");
-		sizeColumn4.setMinWidth(50);
-		sizeColumn4.getStyleClass().add("sizeCol4");
-		sizeColumn4.setCellValueFactory(new PropertyValueFactory<>("numElements"));
-		// Setting Up Swaps Column
-		TableColumn<Sorts, Integer> swapColumn4 = new TableColumn<>("Swaps");
-		swapColumn4.setMinWidth(100);
-		swapColumn4.getStyleClass().add("swapCol4");
-		swapColumn4.setCellValueFactory(new PropertyValueFactory<>("numSwaps"));
-		// Setting UP Comparisons Column
-		TableColumn<Sorts, Integer> compColumn4 = new TableColumn<>("Comparisons");
-		compColumn4.setMinWidth(100);
-		compColumn4.getStyleClass().add("compCol4");
-		compColumn4.setCellValueFactory(new PropertyValueFactory<>("numComparisons"));
-		// Setting Up RunTime Column
-		TableColumn<Sorts, Integer> runTColumn4 = new TableColumn<>("Run Time(Sec)");
-		runTColumn4.setMinWidth(50);
-		runTColumn4.getStyleClass().add("runTCol4");
-		runTColumn4.setCellValueFactory(new PropertyValueFactory<>("runTime"));
-		// Seting Up Unsorted data
-		TableColumn<Sorts, Integer> unsortColumn4 = new TableColumn<>("Unsorted Data");
-		unsortColumn4.setMinWidth(650);
-		unsortColumn4.setCellValueFactory(new PropertyValueFactory<>("unSortedDataString"));
-		// Seting Up Sorted Data
-		TableColumn<Sorts, Integer> sortedColumn4 = new TableColumn<>("Sorted Data");
-		sortedColumn4.setMinWidth(650);
-		sortedColumn4.setCellValueFactory(new PropertyValueFactory<>("sortedDataString"));
-
 		// ----------Setting Up Table View--------
-		size10.setItems(diez);
-		size10.getColumns().addAll(nameColumn0, sizeColumn0, swapColumn0, compColumn0, runTColumn0, unsortColumn0,
+		
+		mainTable.setItems(mainTableData);
+		mainTable.getColumns().addAll(nameColumn0, sizeColumn0, swapColumn0, compColumn0, runTColumn0, unsortColumn0,
 				sortedColumn0);
-		size100.setItems(cien);
-		size100.getColumns().addAll(nameColumn1, sizeColumn1, swapColumn1, compColumn1, runTColumn1, unsortColumn1,
+		bigTable.setItems(bigDataTable);
+		bigTable.getColumns().addAll(nameColumn1, sizeColumn1, swapColumn1, compColumn1, runTColumn1, unsortColumn1,
 				sortedColumn1);
-		size1000.setItems(mil);
-		size1000.getColumns().addAll(nameColumn2, sizeColumn2, swapColumn2, compColumn2, runTColumn2, unsortColumn2,
-				sortedColumn2);
-		size10000.setItems(diezMil);
-		size10000.getColumns().addAll(nameColumn3, sizeColumn3, swapColumn3, compColumn3, runTColumn3, unsortColumn3,
-				sortedColumn3);
-		size100000.setItems(cienMil);
-		size100000.getColumns().addAll(nameColumn4, sizeColumn4, swapColumn4, compColumn4, runTColumn4, unsortColumn4,
-				sortedColumn4);
-		// --------------------------------Done With Adding Mini Tables----------------------
-		// ---------------------------------------------Setting Functions Interface---------------------------------
+		
+		// --------------------------------Done With Adding Mini
+		// Tables----------------------
+		// ---------------------------------------------Setting Functions
+		// Interface---------------------------------
+		BorderPane interfaceT = new BorderPane();
 		VBox mainVBox = new VBox();
 		mainVBox.getStyleClass().add("mainVBox");
 		HBox mainHBox = new HBox();
 		mainHBox.getStyleClass().add("mainHBox");
-		HBox interfaceBox = new HBox();
-		interfaceBox.getStyleClass().add("inteHBox");
+		HBox bottom = new HBox();
+		bottom.getStyleClass().add("buttonHbox");
+
+		HBox tableView = new HBox();
+		tableView.getStyleClass().add("inteHBox");
+		HBox sortsView = new HBox();
+		sortsView.getChildren().addAll(mainTable);
+		HBox sortsBView = new HBox();
+		sortsBView.getStyleClass().add("sortsBView");
+		sortsBView.getChildren().addAll(example3,bigTable,example4);
+		
 		mainHBox.getChildren().addAll(title);
-		mainVBox.getChildren().addAll(mainHBox, size10, size100, size1000, size10000, size100000, generButton);
-		interfaceBox.getChildren().addAll(example1, mainVBox, example2);
+		bottom.getChildren().addAll(generButton);
+
+		tableView.getChildren().addAll(example1,mainTable,example2);
+		interfaceT.setTop(mainHBox);
+		interfaceT.setCenter(tableView);
+		interfaceT.setBottom(sortsBView);
 
 		// ------------------------------------------
 		// Viewing the Window
 		primaryStage.setFullScreen(true);
-		Scene scene = new Scene(interfaceBox);
+		Scene scene = new Scene(interfaceT);
 		scene.getStylesheets().add("GUIStyleSheet.css");
 		window.setScene(scene);
 		window.show();
@@ -284,15 +177,15 @@ public class GUISorting extends Application {
 
 	/**
 	 * Private methods that set up Sorting For Table View
-	 * @return 
+	 * 
+	 * @return
 	 */
 	private ObservableList<Sorts> mainList() {
 		ObservableList<Sorts> mainTemp = FXCollections.observableArrayList();
 		ObservableList<Sorts> size10 = getSize10();
 		ObservableList<Sorts> size100 = getSize100();
-		ObservableList<Sorts> size1000= getSize1000();
+		ObservableList<Sorts> size1000 = getSize1000();
 		ObservableList<Sorts> size10000 = getSize10000();
-		ObservableList<Sorts> size100000 = getSize100000();
 		for (int i = 0; i < size10.size(); i++) {
 			mainTemp.add(size10.get(i));
 		}
@@ -303,13 +196,11 @@ public class GUISorting extends Application {
 			mainTemp.add(size1000.get(i));
 		}
 		for (int i = 0; i < size10000.size(); i++) {
-			mainTemp.add(size10000.get(i));
-		}
-		for (int i = 0; i < size100000.size(); i++) {
-			mainTemp.add(size100000.get(i));
+		mainTemp.add(size10000.get(i));
 		}
 		return mainTemp;
 	}
+
 	/*
 	 * Size 10 Sorting Algorithms
 	 */

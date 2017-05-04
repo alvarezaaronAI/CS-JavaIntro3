@@ -7,15 +7,26 @@
 	-fx-font-size:20pt;
 	-fx-font-style:italic;
 	-fx-fill: LightSkyBlue;
+	-fx-alignment: center ;
 }
 .geneButton{
+	-fx-alignment: center ;
 	-fx-base:LightSkyBlue;
 	-fx-padding:20px;
+	-fx-cursor:hand;
 }
-.mainVBox{
+.inteHBox{
 	-fx-alignment:center;
 	-fx-base:LightSeaGreen;
 }
 .mainHBox{
-	-fx-alignment:center;
+	-fx-alignment: center ;
 }
+.sortsBView{
+	-fx-alignment:center;
+	-fx-base:LightSeaGreen;
+}
+.buttonHbox{
+	-fx-alignment:center ;
+}
+

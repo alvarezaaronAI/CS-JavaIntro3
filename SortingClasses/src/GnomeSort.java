@@ -27,7 +27,6 @@ public class GnomeSort<T extends Comparable<T>> implements Sorts {
 		this.sortedData = copyArrayList;
 		this.numElements = this.sortedData.size();
 		sort();
-		System.out.println("Gnome" + numElements);
 	}
 
 	/**
