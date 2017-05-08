@@ -71,24 +71,20 @@ public class MergeSort<T extends Comparable<T>> implements Sorts {
 			this.numComparisons++;
 			if (list1.get(i).compareTo(list2.get(j)) < 0) {
 				result.set(k, list1.get(i));
-				this.numSwaps++;
 				i++;
 			} else {
 				result.set(k, list2.get(j));
-				this.numSwaps++;
 				j++;
 			}
 			k++;
 		}
 		while (i < list1.size()) {
 			result.set(k, list1.get(i));
-			this.numSwaps++;
 			i++;
 			k++;
 		}
 		while (j < list2.size()) {
 			result.set(k, list2.get(j));
-			this.numSwaps++;
 			j++;
 			k++;
 		}

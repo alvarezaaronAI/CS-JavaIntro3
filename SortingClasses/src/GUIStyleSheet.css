@@ -13,20 +13,22 @@
 	-fx-alignment: center ;
 	-fx-base:LightSkyBlue;
 	-fx-padding:20px;
-	-fx-cursor:hand;
 }
 .inteHBox{
 	-fx-alignment:center;
 	-fx-base:LightSeaGreen;
+	-fx-cursor:hand;
 }
 .mainHBox{
-	-fx-alignment: center ;
+	-fx-alignment: center;
 }
 .sortsBView{
 	-fx-alignment:center;
 	-fx-base:LightSeaGreen;
+	-fx-cursor:hand;
 }
 .buttonHbox{
-	-fx-alignment:center ;
+	-fx-alignment:center;
+	-fx-cursor:hand;
 }
 

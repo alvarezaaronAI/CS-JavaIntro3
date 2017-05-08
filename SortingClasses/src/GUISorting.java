@@ -8,8 +8,6 @@ import javafx.collections.ObservableList;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -54,8 +52,7 @@ public class GUISorting extends Application {
 		mainTableData = mainList();
 		bigDataTable = getSize100000();
 
-		// ------------------------------------------Sorting
-		// Tables------------------------------------
+		// ------------------------------------------Sorting Tables------------------------------------
 		// ----------Table Views-----------
 		mainTable = new TableView<>();
 		mainTable.getStyleClass().add("mainTable");
@@ -137,10 +134,8 @@ public class GUISorting extends Application {
 		bigTable.getColumns().addAll(nameColumn1, sizeColumn1, swapColumn1, compColumn1, runTColumn1, unsortColumn1,
 				sortedColumn1);
 		
-		// --------------------------------Done With Adding Mini
-		// Tables----------------------
-		// ---------------------------------------------Setting Functions
-		// Interface---------------------------------
+		// --------------------------------Done With Adding Mini Tables----------------------
+		// ---------------------------------------------Setting Functions Interface---------------------------------
 		BorderPane interfaceT = new BorderPane();
 		VBox mainVBox = new VBox();
 		mainVBox.getStyleClass().add("mainVBox");
@@ -167,7 +162,6 @@ public class GUISorting extends Application {
 
 		// ------------------------------------------
 		// Viewing the Window
-		primaryStage.setFullScreen(true);
 		Scene scene = new Scene(interfaceT);
 		scene.getStylesheets().add("GUIStyleSheet.css");
 		window.setScene(scene);
