@@ -14,7 +14,7 @@ public class TestingTester {
 
 	/*
 	 * Testing Sorting Methods
-	 */
+	 */ 
 	@Test
 	public void bubbleUpSortTest() {
 		// Making a Sorting Type and sorting it

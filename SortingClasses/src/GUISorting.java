@@ -316,8 +316,7 @@ public class GUISorting extends Application {
 		size100000.add(new RadixSort(tempArray));
 		size100000.add(new OddEvenSort<>(tempArray));
 		size100000.add(new GnomeSort<>(tempArray));
-
-		return size100000;
+  		return size100000;
 	}
 
 	/**

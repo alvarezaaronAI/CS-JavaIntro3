@@ -1,7 +1,5 @@
-import java.lang.reflect.Array;
+
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class SortingTester {
 	public static void main(String[] args) {
