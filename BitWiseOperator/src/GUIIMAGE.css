@@ -1,0 +1,36 @@
+.root{
+	-fx-font-size:12pt;
+	-fx-background-color:rgb(12,15,14);
+	-fx-spacing: 20;
+}
+/*
+ * Menu Styles
+ */
+.menuBar{
+	-fx-background-color: rgb(12,15,14);
+	
+}
+.context-menu{
+	-fx-background-color: black;
+	
+}
+.menu .label{
+	-fx-cursor: hand;
+	-fx-text-fill: rgb(41,245,33);
+}
+
+/*
+ * Menu Items
+ */
+.menu-item .label{
+	-fx-text-fill:white;
+}
+.openFileItem{
+	-fx-cursor: hand;
+	-fx-background-color: black;
+    
+}
+.editItem{
+	-fx-cursor: hand;
+	-fx-background-color: black;
+}

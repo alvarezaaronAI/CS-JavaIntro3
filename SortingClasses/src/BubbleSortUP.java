@@ -7,6 +7,7 @@ public class BubbleSortUP<T extends Comparable<T>> implements Sorts {
 	/**
 	 * Member Variables, keeping Track of Data for my GUI.
 	 */
+	
 	private final String NAME = "Bubble Sorting Unoptimized";
 	private ArrayList<T> unSortedData = null;
 	private ArrayList<T> sortedData = null;
@@ -29,7 +30,9 @@ public class BubbleSortUP<T extends Comparable<T>> implements Sorts {
 		this.numElements = this.sortedData.size();
 		sort();
 	}
-
+	public BubbleSortUP(ArrayList<Integer> test, String x) {
+		// TODO Auto-generated constructor stub
+	}
 	/**
 	 * Methods That Will Do The Sorting
 	 */

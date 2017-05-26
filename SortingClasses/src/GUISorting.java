@@ -50,7 +50,7 @@ public class GUISorting extends Application {
 		example4 = new Text("example");
 		// ------------------------------------------
 		mainTableData = mainList();
-		bigDataTable = getSize100000();
+		//bigDataTable = getSize100000();
 
 		// ------------------------------------------Sorting Tables------------------------------------
 		// ----------Table Views-----------
